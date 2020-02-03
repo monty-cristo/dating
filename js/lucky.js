@@ -9,7 +9,7 @@ window.onload = () => {
 
       let randomUserId = Math.floor(Math.random() * users.length);
 
-      //check if we didn't just grab the current user, not if their not into that at least.
+      //check if we didn't just grab the current user
       while (randomUserId === sessionStorage.getItem("user")) {
         randomUserId = Math.floor(Math.random() * users.lenght);
       }
