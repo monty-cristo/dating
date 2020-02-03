@@ -1,11 +1,145 @@
+<!-- Met dank aan https://bootsnipp.com/snippets/7nmOW -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dating</title>
-</head>
-<body>
-    
-</body>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Registreer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/userDetail.css" />
+    <script src="js/register.js"></script>
+  </head>
+
+  <body>
+    <div class="container contact-form">
+      <div class="contact-image">
+        <img
+          src="https://image.ibb.co/kUagtU/rocket_contact.png"
+          alt="rocket_contact"
+        />
+      </div>
+      <form id="registerForm">
+        <h3><span id="profielVan">Registreer </span></h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="detailFnaam">Familienaam : </label>
+              <input type="text" class="form-control" id="familienaam" />
+            </div>
+            <div class="form-group">
+              <label for="detailVnaam">Voornaam : </label>
+              <input type="text" class="form-control" id="voornaam" />
+            </div>
+            <div class="form-group">
+              <label for="detailGeboortedatum">Geboortedatum : </label>
+              <input
+                required
+                type="date"
+                class="form-control"
+                id="geboortedatum"
+              />
+            </div>
+            <div class="form-group">
+              <label for="detailHaarkleur">Haarkleur : </label>
+              <input type="text" class="form-control" id="haarkleur" />
+            </div>
+            <div class="form-group">
+              <label for="oogkleur">Oogkleur : </label>
+              <input type="text" class="form-control" id="oogkleur" />
+            </div>
+            <div class="form-group">
+              <label for="grootte">Grootte : </label>
+              <input type="number" class="form-control" id="grootte" />
+            </div>
+            <div class="form-group">
+              <label for="gewicht">Gewicht : </label>
+              <input type="number" class="form-control" id="gewicht" />
+            </div>
+            <div class="form-group">
+              <label for="detailBeroep">Beroep : </label>
+              <input type="text" class="form-control" id="beroep" />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="submit"
+                name="btnSubmit"
+                id="btnSubmit"
+                class="btnContact"
+                value="Registreer"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="sex">Sex:    </label>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sex"
+                id="man"
+                value="m"
+                checked
+              />
+              <label class="form-check-label" for="man">
+                Man
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sex"
+                value="v"
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                Vrouw
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sex"
+                value="x"
+              />
+              <label class="form-check-label" for="x">
+                Anders
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="detailNick">Nickname : </label>
+              <input required type="text" class="form-control" id="nickname" />
+            </div>
+            <div class="form-group">
+              <label for="detailEmail">Email : </label>
+              <input required type="email" class="form-control" id="email" />
+            </div>
+            <div class="form-group">
+              <label for="detailNick">Wachtwoord : </label>
+              <input
+                type="password"
+                class="form-control"
+                id="wachtwoord"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="detailNick">Wachtwoord nogmaals : </label>
+              <input
+                type="password"
+                class="form-control"
+                id="wachtwoord2"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
