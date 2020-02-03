@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dating</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+
+    <script>
+      window.onload = function() {
+        document
+          .getElementById("btnLogin")
+          .addEventListener("click", async function(e) {
+            console.log("Je hebt op de Login-knop geklikt");
+            const nickname = document.getElementById("loginNick").value;
+            const wachtwoord = document.getElementById("loginPas").value;
+
+            console.log("nickname = " + nickname);
+            console.log("wachtwoord = " + wachtwoord);
+
+            const url =
+              "https://scrumserver.tenobe.org/scrum/api/profiel/authenticate.php";
+
+            console.log("Backend API url = " + url);
+
+            const data = {
+              nickname,
+              wachtwoord
+            };
+
+            console.log("Deze data wordt verstuurd : ");
+            console.log(data);
+
+            const request = new Request(url, {
+              method: "POST",
+              body: JSON.stringify(data),
+              headers: new Headers({
+                "Content-Type": "application/json"
+              })
+            });
+
+            console.log("Deze request wordt verstuurd : ");
+            console.log(request);
+
+            const response = await fetch(request);
+            const foo = await response.json();
+
+            if (foo.message == "Authorized") {
+              console.log("Reactie van backend API : Correcte gegevens");
+              window.location.href = "profile.html";
+            }
+          });
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div
+        class="row justify-content-center align-items-center"
+        style="height:100vh"
+      >
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <form autocomplete="off">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="loginNick"
+                    id="loginNick"
+                    placeholder="login"
+                    value="Jetbrain"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="loginPas"
+                    id="loginPas"
+                    placeholder="password"
+                    value="vdab"
+                  />
+                </div>
+                <button type="button" id="btnLogin" class="btn btn-primary">
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
