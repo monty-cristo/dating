@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scrum Frontend Demo : detailpagina van een gebruiker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../img/faviconFrontend.ico">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="userDetail.css">
+
+    <script>
+        window.onload = function () {
+
+            let profielData;
+
+            let profielId = '3';
+            //let profielId = Math.floor(Math.random() * 7)+1; //random profiel van 0 - 7
+
+            let url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + profielId;
+
+            fetch(url)
+                .then(function (resp) { return resp.json(); })
+                .then(function (data) {
+
+                    profielData = data;
+
+                    document.getElementById('detailNick').value = profielData.nickname;
+                    document.getElementById('detailFnaam').value = profielData.familienaam;
+                    document.getElementById('detailVnaam').value = profielData.voornaam;
+                    document.getElementById('detailGeboortedatum').value = profielData.geboortedatum;
+                    document.getElementById('detailHaarkleur').value = profielData.haarkleur;
+                    document.getElementById('detailBeroep').value = profielData.beroep;
+                    document.getElementById('detailEmail').value = profielData.email;
+                    document.getElementById('detailLovecoins').value = profielData.lovecoins;
+                    document.getElementById('detailFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
+                    document.getElementById('detailFoto').setAttribute('alt', 'foto van ' + profielData.voornaam + ' ' + profielData.familienaam);
+                    document.getElementById('profielVan').innerText = 'Details van ' + profielData.voornaam + ' ' + profielData.familienaam;
+                    document.getElementById('detailSexe').value = profielData.sexe;
+                    document.getElementById('detailOogkleur').value = profielData.oogkleur;
+                    document.getElementById('detailGewicht').value = profielData.gewicht;
+                    document.getElementById('detailGrootte').value = profielData.grootte;
+                    document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
+
+
+                })
+                .catch(function (error) { console.log(error); });
+
+
+            document.getElementById('btnSubmit').addEventListener('click', function (e) {
+                let urlUpdate = 'https://scrumserver.tenobe.org/scrum/api/profiel/update.php';
+
+                profielData.nickname = document.getElementById('detailNick').value;
+                profielData.familienaam = document.getElementById('detailFnaam').value;
+                profielData.voornaam = document.getElementById('detailVnaam').value;
+                profielData.geboortedatum = document.getElementById('detailGeboortedatum').value;
+                profielData.haarkleur = document.getElementById('detailHaarkleur').value;
+                profielData.beroep = document.getElementById('detailBeroep').value;
+                profielData.email = document.getElementById('detailEmail').value;
+                profielData.lovecoins = document.getElementById('detailLovecoins').value;
+                profielData.sexe = document.getElementById('detailSexe').value;
+                profielData.oogkleur = document.getElementById('detailOogkleur').value;
+                profielData.gewicht = document.getElementById('detailGewicht').value;
+                profielData.grootte = document.getElementById('detailGrootte').value;
+                profielData.wachtwoord = document.getElementById('detailWachtWoord').value;
+
+                var request = new Request(urlUpdate, {
+                    method: 'PUT',
+                    body: JSON.stringify(profielData),
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    })
+                });
+
+                fetch(request)
+                    .then(function (resp) { return resp.json(); })
+                    .then(function (data) { console.log(data); })
+                    .catch(function (error) { console.log(error); });
+
+            });         
+        };
+    </script>
+</head>
+
+<body>
+
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+        </div>
+        <form>
+            <h3><span id="profielVan">Details van </span></h3>
+            <div class="row">
+                <div class="col-md-6">
+                    
+                    <div class="form-group">
+                        <label for="detailNick">Nickname : </label> <input type="text" class="form-control" id="detailNick"
+                            value="nog niet ontvangen" >
+                    </div>
+                    <div class="form-group">
+                        <label for="detailFnaam">Familienaam : </label> <input type="text" class="form-control" id="detailFnaam"
+                            value="nog niet ontvangen" style="display:none">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailVnaam">Voornaam : </label> <input type="text" class="form-control" id="detailVnaam"
+                            value="nog niet ontvangen" style="display:none">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailGeboortedatum">Geboortedatum : </label> <input type="text" class="form-control"
+                            id="detailGeboortedatum" value="nog niet ontvangen" style="display:none">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailSexe">Sexe : </label> <input type="text" class="form-control" id="detailSexe"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailGewicht">Gewicht : </label> <input type="text" class="form-control" id="detailGewicht"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailGrootte">Grootte : </label> <input type="text" class="form-control" id="detailGrootte"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailHaarkleur">Haarkleur : </label> <input type="text" class="form-control" id="detailHaarkleur"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailOogkleur">Oogkleur : </label> <input type="text" class="form-control" id="detailOogkleur"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailBeroep">Beroep : </label> <input type="text" class="form-control" id="detailBeroep"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailEmail">Email : </label> <input type="text" class="form-control" id="detailEmail"
+                            value="nog niet ontvangen" style="display:none">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailLovecoins">Lovecoins : </label> <input type="text" class="form-control" id="detailLovecoins"
+                            value="nog niet ontvangen" style="display:none">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailWachtWoord">Wachtwoord : </label> <input type="text" class="form-control" id="detailWachtWoord"
+                            value="nog niet ontvangen" style="display:none">
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
+                            class="profielfoto">
+                    </div>
+                    <div class="form-group">
+                        <button class="buttonBericht">Bericht sturen naar deze persoon</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="buttonLike">Deze persoon leuk vinden</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>
