@@ -39,6 +39,11 @@
                     document.getElementById('detailFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
                     document.getElementById('detailFoto').setAttribute('alt', 'foto van ' + profielData.voornaam + ' ' + profielData.familienaam);
                     document.getElementById('profielVan').innerText = 'Details van ' + profielData.voornaam + ' ' + profielData.familienaam;
+                    document.getElementById('detailSexe').value = profielData.sexe;
+                    document.getElementById('detailOogkleur').value = profielData.oogkleur;
+                    document.getElementById('detailGewicht').value = profielData.gewicht;
+                    document.getElementById('detailGrootte').value = profielData.grootte;
+                    document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
 
 
                 })
@@ -56,6 +61,11 @@
                 profielData.beroep = document.getElementById('detailBeroep').value;
                 profielData.email = document.getElementById('detailEmail').value;
                 profielData.lovecoins = document.getElementById('detailLovecoins').value;
+                profielData.sexe = document.getElementById('detailSexe').value;
+                profielData.oogkleur = document.getElementById('detailOogkleur').value;
+                profielData.gewicht = document.getElementById('detailGewicht').value;
+                profielData.grootte = document.getElementById('detailGrootte').value;
+                profielData.wachtwoord = document.getElementById('detailWachtWoord').value;
 
                 var request = new Request(urlUpdate, {
                     method: 'PUT',
@@ -85,24 +95,45 @@
             <h3><span id="profielVan">Details van </span></h3>
             <div class="row">
                 <div class="col-md-6">
+                    
+                    <div class="form-group">
+                        <label for="detailId">Id : </label> <input type="number" class="form-control" id="detailId"
+                            value="nog niet ontvangen">
+                    </div>
                     <div class="form-group">
                         <label for="detailNick">Nickname : </label> <input type="text" class="form-control" id="detailNick"
                             value="nog niet ontvangen">
                     </div>
                     <div class="form-group">
                         <label for="detailFnaam">Familienaam : </label> <input type="text" class="form-control" id="detailFnaam"
-                            value="nog niet ontvangen">
+                            value="nog niet ontvangen" >
                     </div>
                     <div class="form-group">
                         <label for="detailVnaam">Voornaam : </label> <input type="text" class="form-control" id="detailVnaam"
-                            value="nog niet ontvangen">
+                            value="nog niet ontvangen" >
                     </div>
                     <div class="form-group">
                         <label for="detailGeboortedatum">Geboortedatum : </label> <input type="text" class="form-control"
                             id="detailGeboortedatum" value="nog niet ontvangen">
                     </div>
                     <div class="form-group">
+                        <label for="detailSexe">Sexe : </label> <input type="text" class="form-control" id="detailSexe"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailGewicht">Gewicht : </label> <input type="text" class="form-control" id="detailGewicht"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailGrootte">Grootte : </label> <input type="text" class="form-control" id="detailGrootte"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
                         <label for="detailHaarkleur">Haarkleur : </label> <input type="text" class="form-control" id="detailHaarkleur"
+                            value="nog niet ontvangen">
+                    </div>
+                    <div class="form-group">
+                        <label for="detailOogkleur">Oogkleur : </label> <input type="text" class="form-control" id="detailOogkleur"
                             value="nog niet ontvangen">
                     </div>
                     <div class="form-group">
@@ -117,7 +148,10 @@
                         <label for="detailLovecoins">Lovecoins : </label> <input type="text" class="form-control" id="detailLovecoins"
                             value="nog niet ontvangen">
                     </div>
-
+                    <div class="form-group">
+                        <label for="detailWachtWoord">Wachtwoord : </label> <input type="text" class="form-control" id="detailWachtWoord"
+                            value="nog niet ontvangen">
+                    </div>
 
                     <div class="form-group">
                         <input type="submit" name="btnSubmit"  id="btnSubmit" class="btnContact" value="Update" onclick="return false;" />
