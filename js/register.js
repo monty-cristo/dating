@@ -1,4 +1,7 @@
 "use strict";
+
+import { playWebcam, createPicture, uploadPicture } from './methods/webcam.js';
+
 window.onload = () => {
     const form = document.getElementById("registerForm");
     const nickname = document.getElementById("nickname");
@@ -14,12 +17,59 @@ window.onload = () => {
     const wachtwoord = document.getElementById("wachtwoord");
     const wachtwoord2 = document.getElementById("wachtwoord2");
     const sex = document.querySelector('input[name="sex"]:checked');
+
+
+    const btnShowModal = document.getElementById("btnShowModal");
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const btnTakePicture = document.getElementById("btnTakePicture");
+    const foto = document.getElementById("foto");
+    const btnDitIsHem = document.getElementById("btnDitIsHem");
+
+    let picture = null;
+
+    //check if the user has a webcam, do it in a modal
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      //show the foto modal button
+      btnShowModal.style.display = "initial";
+
+      btnShowModal.onclick = () => {
+        $('#fotoModal').modal('show');
+        playWebcam(video);
+        $('#fotoModal').modal('handleUpdate');
+      }
+
+      btnTakePicture.onclick = () => {
+        const src = createPicture(video, canvas);
+        foto.src = src;
+        picture = src;
+      }
+      
+      btnDitIsHem.onclick = () => {
+        if(picture) {
+          picture = uploadPicture("foto", picture);
+          $('#fotoModal').modal('hide');
+        }
+      }
+
+      document.querySelectorAll(".btnClose").forEach(node => {
+        node.onclick = () => {
+          foto.src = "https://scrumserver.tenobe.org/scrum/img/no_image.png";
+          $('#fotoModal').modal('hide');
+        }
+      });
+    }
   
-    document.getElementById("btnSubmit").onclick = async e => {
+    form.onsubmit = async e => {
       wachtwoord2.setCustomValidity("");
       if (form.checkValidity()) {
         if (wachtwoord.value === wachtwoord2.value) {
           e.preventDefault();
+
+          let foto = "no_picture.jpg";
+          if(picture) {
+            foto = picture;
+          }
   
           const data = {
             familienaam: familienaam.value,
@@ -34,7 +84,7 @@ window.onload = () => {
             gewicht: gewicht.value,
             wachtwoord: wachtwoord.value,
             sexe: sex.value,
-            foto: "no_picture.jpg",
+            foto,
             lovecoins: "3"
           };
   
