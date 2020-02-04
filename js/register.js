@@ -1,3 +1,4 @@
+"use strict";
 window.onload = () => {
     const form = document.getElementById("registerForm");
     const nickname = document.getElementById("nickname");
@@ -50,11 +51,11 @@ window.onload = () => {
   
           try {
             const response = await fetch(request);
-            const user = await response.json();
-            sessionStorage.setItem("user", user.id);
+            const { id } = await response.json();
+            sessionStorage.setItem("user", id);
             window.location.href = "/";
-          } catch (error) {
-            alert(error.message);
+          } catch ({ message }) {
+            alert(message);
           }
         } else {
           wachtwoord2.setCustomValidity("Wachtwoorden moeten hetzelfde zijn.");

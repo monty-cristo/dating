@@ -1,3 +1,4 @@
+"use strict";
 window.onload = () => {
   const btnLucky = document.getElementById("btnLucky");
   btnLucky.onclick = async () => {
@@ -21,8 +22,8 @@ window.onload = () => {
       const user = await response.json();
 
       console.log(user);
-    } catch (error) {
-      alert(error);
+    } catch ({ message }) {
+      alert(message);
     }
   };
 };
