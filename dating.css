@@ -16,9 +16,13 @@ header {
     background-color: rgb(164, 30, 32);
     border-color: rgb(164, 30, 32);
 }
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover {
     background-color: rgb(120, 32, 31) !important;
     border-color: rgb(120, 32, 31) !important;
+}
+
+.btn-primary:focus {
+    box-shadow: none !important;
 }
 
 .btn-primary:active {
