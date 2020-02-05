@@ -1,5 +1,7 @@
 "use strict";
 async function addFavorite() {
+const url = "https://scrumserver.tenobe.org/scrum/api/favoriet/like.php";
+
   const favoriteId = new URL(window.location.href).searchParams.get("id");
 
   const data = {

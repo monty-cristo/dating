@@ -1,7 +1,8 @@
 "use strict";
+import addFavorite from './methods/addFavorite.js';
 
-
-let profielId = 3 //Math.floor(Math.random() * 4)+1; random profiel van 0 - 4
+//let profielId = 3 //Math.floor(Math.random() * 4)+1; random profiel van 0 - 4
+const profielId = new URL(window.location.href).searchParams.get("id");
 
 //velden invullen
 window.onload = function () {
@@ -45,30 +46,10 @@ let ingelogdId = 7;
 let favorietPersoon = false;
 let rooturl = 'https://scrumserver.tenobe.org/scrum/api';
 console.log(ingelogdId, profielId, 1, rooturl)
-document.getElementById('buttonLike').onclick = function (){
-    console.log(ingelogdId, profielId, 2)
+document.getElementById('buttonLike').onclick = async function (e){
+    e.preventDefault();
+    await addFavorite();
     favorietPersoon = true;
-    console.log(ingelogdId, profielId, 2, favorietPersoon)
-    let mijnId =  1; 
-    let anderId =  2;
-    let url=rooturl+'/favoriet/like.php';
-    //LET OP : rooturl = https://scrumserver.tenobe.org/scrum/api
-    let data = {
-        mijnId: mijnId,
-        anderId: anderId
-    }
-    var request = new Request(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    });
-    
-    fetch(request)
-        .then( function (resp)  { return resp.json(); })
-        .then( function (data)  { console.log(data);  })
-        .catch(function (error) { console.log(error); });
 
 };
 console.log(favorietPersoon)
