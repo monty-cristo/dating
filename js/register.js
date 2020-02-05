@@ -66,7 +66,7 @@ window.onload = () => {
         if (wachtwoord.value === wachtwoord2.value) {
           e.preventDefault();
 
-          let foto = "no_picture.jpg";
+          let foto = "no_image.jpg";
           if(picture) {
             foto = picture;
           }
