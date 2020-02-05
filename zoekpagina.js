@@ -1,6 +1,7 @@
 "use strict";
 const rooturl = 'https://scrumserver.tenobe.org/scrum/api';
-document.getElementById('btnSubmit').addEventListener('click', function (e) {
+
+document.getElementById('btnSubmit').addEventListener('click', function (e) { //specifiek zoeken
     let geslacht = document.getElementById('geslachtDetail').options[document.getElementById('geslachtDetail').selectedIndex].innerText;
     let grootte = document.getElementById('grootteDetail').value;
     let oogKleur = document.getElementById('oogDetail').value;
@@ -21,7 +22,7 @@ document.getElementById('btnSubmit').addEventListener('click', function (e) {
         .catch(function (error) { console.log(error); });
 });
 
-document.getElementById('btnSubmit2').addEventListener('click', function (e) {
+document.getElementById('btnSubmit2').addEventListener('click', function (e) { //gedetailleerd zoeken
     let grootteOperator = operatorMaken(document.getElementById('grootteOperator').options[document.getElementById('grootteOperator').selectedIndex].innerText);
     let gewichtOperator = operatorMaken(document.getElementById('gewichtOperator').options[document.getElementById('gewichtOperator').selectedIndex].innerText);
     let geboordatumOperator = operatorMaken(document.getElementById('geboordatumOperator').options[document.getElementById('geboordatumOperator').selectedIndex].innerText);
@@ -41,7 +42,8 @@ document.getElementById('btnSubmit2').addEventListener('click', function (e) {
         })
         .catch(function (error) { console.log(error); });
 });
-document.getElementById('btnSubmit3').addEventListener('click', function (e) {
+
+document.getElementById('btnSubmit3').addEventListener('click', function (e) { //zoeken met range
     let minGrootte = document.getElementById('grootteMin').value;
     let maxGrootte = document.getElementById('grootteMax').value;
     let minGewicht = document.getElementById('gewichtMin').value;
@@ -76,7 +78,8 @@ function operatorMaken(operator) {
             return '';
     }
 }
-function resultatenTonen(data) {
+
+function resultatenTonen(data) { 
     const parent = document.getElementById('zoekResultaten');
     while (parent.childNodes[0]) {
         parent.childNodes[0].remove();
@@ -91,6 +94,7 @@ function resultatenTonen(data) {
         }
     }
 }
+
 function lijnVullen(teller, data) {
     const tr = document.getElementById('zoekResultaten').insertRow();
     addCell(tr, data[teller].sexe);
@@ -100,9 +104,10 @@ function lijnVullen(teller, data) {
     addCell(tr, data[teller].gewicht);
     addCell(tr, data[teller].geboortedatum);
 }
+
 function addCell(parent, cellCol) {
     const tableCell = parent.insertCell();
     const tableCellInput = cellCol;
     tableCell.innerText = tableCellInput;
-    /* tableCell.className = nameclass; */
+    //tableCell.className = nameclass; 
 }
