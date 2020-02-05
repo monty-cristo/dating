@@ -27,7 +27,7 @@ window.onload = function() {
       if (message == "Authorized") {
         console.log("Reactie van backend API : Correcte gegevens");
         sessionStorage.setItem("user", id);
-        window.location.href = `profile.html?id=${id}`;
+        window.location.href = `zoekpagina.html`;
       }
     } catch ({ message }) {
       alert(message);
