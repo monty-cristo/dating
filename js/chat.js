@@ -46,13 +46,22 @@ class ContactList extends Component {
 }
 
 class Chat extends Component {
+  onTextChange = e => {
+    this.props.onTextChange(e);
+  }
+
+  onTextSend = async () => {
+    await this.props.onTextSend();
+    //TODO: clear text from chat input
+  }
+
   render({ conversation = [] }) {
     return html`
       <d class="chat">
         <${Conversation} conversation=${conversation} />
         <div>
-          <input type="text" placeholder="Stuur text..." />
-          <button type="button">Send</button>
+          <input onchange=${this.onTextChange} type="text" placeholder="Stuur text..." />
+          <button onclick=${this.onTextSend} type="button">Send</button>
         </div>
       </d>
     `;
@@ -113,13 +122,12 @@ class App extends Component {
         })
       );
 
-      contacts = contacts.map(({ familienaam, voornaam, foto }) => ({
+      contacts = contacts.map(({ familienaam, voornaam, foto, id }) => ({
         familienaam,
         voornaam,
-        foto
+        foto,
+        id
       }));
-
-      console.log(conversations);
 
       this.setState({
         conversations,
@@ -144,10 +152,40 @@ class App extends Component {
 
   onTextSend = async () => {
     //send text.
-    const { text } = this.state;
+    const { text, contacts, selectedUser } = this.state;
     const url = "https://scrumserver.tenobe.org/scrum/api/bericht/post.php"
 
-    
+    const vanId = sessionStorage.getItem("user");
+    const naarId = contacts[selectedUser].id;
+    const bericht = text;
+
+    const data = {
+      vanId,
+      naarId,
+      bericht
+    }
+
+    console.log(JSON.stringify(data));
+
+    const request = new Request(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+
+    try {
+      const response = await fetch(request);
+      console.log(response);
+      //const { message, id } = await response.json();
+      const json = await response.json();
+      console.log(json);
+      //console.log(`message: ${message} | id=${id}`);
+
+    } catch ({ message }) {
+      alert(message);
+    }
   }
 
   render(
@@ -169,7 +207,7 @@ class App extends Component {
           changeContact=${this.changeContact}
           selectedUser=${selectedUser}
         />
-        <${Chat} conversation=${conversation} />
+        <${Chat} conversation=${conversation} onTextChange=${this.onTextChange} onTextSend=${this.onTextSend}  />
       </div>
     `;
   }
