@@ -3,7 +3,7 @@ import {
   html,
   render,
   Component
-} from "https://unpkg.com/htm/preact/standalone.module.js";
+} from "../vendor/js/preact.js";
 
 class ContactItem extends Component {
   changeContact = selectedUser => {
