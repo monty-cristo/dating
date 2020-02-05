@@ -87,6 +87,7 @@ function resultatenTonen(data) {
     if (data.length > 10) {
         for (let teller = 0; teller < 10; teller++) {
             lijnVullen(teller, data);
+            //parent.inserRow().insertCell().innerText='z';
         }
     } else {
         for (let teller = 0; teller < data.length; teller++) {
@@ -103,6 +104,12 @@ function lijnVullen(teller, data) {
     addCell(tr, data[teller].haarkleur);
     addCell(tr, data[teller].gewicht);
     addCell(tr, data[teller].geboortedatum);
+
+    const tableCell = tr.insertCell();
+    const link = document.createElement("a");
+    link.innerText = "ga naar porfiel";
+    link.href = `/profielAnderePersoon.html?id=${data[teller].id}`;
+    tableCell.appendChild(link);
 }
 
 function addCell(parent, cellCol) {
