@@ -1,0 +1,105 @@
+.verlegen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark-black);
+  height: 100vh;
+  color: var(--color-grey);
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+.contactList {
+  padding: 20px;
+  background-color: var(--color-black);
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 10px;
+}
+
+.contactItem {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  color: var(--color-grey);
+  cursor: pointer;
+}
+
+.contactItem.selected,
+.contactItem:hover {
+  background-color: var(--color-dark-black);
+}
+
+.contactItem div {
+  display: grid;
+  gap: 5px;
+}
+
+.contactItem span:first-of-type {
+  font-size: 0.9rem;
+}
+
+.contactItem span:last-of-type {
+  font-size: 0.8rem;
+  color: #c53030;
+}
+
+.contactItem img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  background-color: var(--color-grey);
+  border-radius: 100%;
+}
+
+.chat {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 15px;
+  background-color: var(--color-dark-black);
+  padding: 20px;
+}
+
+.conversation {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 10px;
+}
+
+.message {
+  background-color: var(--color-dark-red);
+  width: max-content;
+  padding: 15px;
+  color: var(--color-grey);
+}
+
+.message.zender {
+  margin-left: auto;
+}
+
+.chat div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  height: 40px;
+}
+
+.chat input {
+  border: 0px;
+}
+
+.chat input::placeholder {
+  padding: 10px;
+}
+
+.chat button {
+  background-color: var(--color-black);
+  border: 0px;
+  color: var(--color-grey);
+  padding: 10px;
+}

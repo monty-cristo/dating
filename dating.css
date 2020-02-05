@@ -1,0 +1,39 @@
+.achtergrond {
+    background-color: rgb(164, 30, 32);
+    background-size: cover;
+}
+header {
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.btn-primary{
+    background-color: rgb(164, 30, 32);
+    border-color: rgb(164, 30, 32);
+}
+.btn-primary:hover {
+    background-color: rgb(120, 32, 31) !important;
+    border-color: rgb(120, 32, 31) !important;
+}
+
+.btn-primary:focus {
+    box-shadow: none !important;
+}
+
+.btn-primary:active {
+    background-color: rgb(71, 35, 28) !important;
+    border-color: rgb(71, 35, 28) !important;
+}
+
+a {
+    color: rgb(164, 30, 32);
+}
+
+a:hover {
+    color: rgb(120, 32, 31);
+}
