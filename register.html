@@ -5,13 +5,28 @@
     <meta charset="utf-8" />
     <title>Registreer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="css/userDetail.css" />
-    <script src="js/register.js"></script>
+    <link rel="stylesheet" href="css/register.css">
+    <script type="module" src="js/register.js"></script>
   </head>
 
   <body>
@@ -75,7 +90,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <label for="sex">Sex:    </label>
+            <label for="sex">Sex: </label>
             <div class="form-check form-check-inline">
               <input
                 class="form-check-input"
@@ -136,6 +151,59 @@
                 id="wachtwoord2"
                 required
               />
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnShowModal"
+            >
+              Trek foto
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="fotoModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="fotoModal"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog mw-100 w-75" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Foto trekken
+                    </h5>
+                    <button
+                      type="button"
+                      class="close btnClose"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <video id="video" width="300" autoplay></video>
+                    <img src="https://scrumserver.tenobe.org/scrum/img/no_image.png" id="foto" alt="webcam foto" width="300" />
+                    <canvas id="canvas" style="display: none;"></canvas>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="btnTakePicture" type="button" class="btn btn-primary mr-auto">
+                      Trek foto
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary btnClose"
+                    >
+                      Terug
+                    </button>
+                    <button id="btnDitIsHem" type="button" class="btn btn-primary">
+                      Dit is hem
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
