@@ -84,7 +84,8 @@ class Message extends Component {
 
 class App extends Component {
   state = {
-    selectedUser: 0
+    selectedUser: 0,
+    text: ""
   };
 
   componentDidMount() {
@@ -136,6 +137,18 @@ class App extends Component {
       conversation: conversations[selectedUser]
     }));
   };
+
+  onTextChange = e => {
+    this.setState({ text: e.target.value });
+  }
+
+  onTextSend = async () => {
+    //send text.
+    const { text } = this.state;
+    const url = "https://scrumserver.tenobe.org/scrum/api/bericht/post.php"
+
+    
+  }
 
   render(
     {},
