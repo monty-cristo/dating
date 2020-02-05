@@ -41,9 +41,7 @@ a:hover {
 body{
     background: -webkit-linear-gradient(left, #78201F, #A41E20);
 }
-.profielfoto{
-    width:250px;
-}
+
 .contact-form{
     background: #fff;
     margin-top: 10%;
@@ -118,4 +116,9 @@ h6, h3 {
 #sterFavoriet {
     padding: 0em;
     border: 0em;
+    margin-top: -0.5em;
+}
+.profielfoto{
+    width:250px;
+    margin: 0em;
 }
