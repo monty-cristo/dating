@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<script src='zoekpagina.js' defer></script>
 </head>
 <body>
     <div class="container contact-form">
-        <div class="contact-image">
-            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
-        </div>
         <form>
-            <h3><span id="profielVan">Details van </span></h3>
+            <h3><span id="profielVan">Specifiek Zoeken </span></h3>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="detailGeslacht">Geslacht : </label> <input type="text" class="form-control" id="detailGeslacht"
-                            value="">
-                    </div>
+                    <label for="geslachtDetail" class="api_demo_lbl">Geslacht :            </label>   
+                                <select id="geslachtDetail" class="api_demo_param_chb">
+                                    <option value="%" selected="">alle geslachten</option>
+                                    <option>v</option>
+                                    <option>m</option>
+                                    <option>x</option>
+                                    <option>%</option>
+                                </select>
                     <div class="form-group">
                         <label for="oogDetail">Oogkleur : </label> <input type="text" class="form-control" id="oogDetail"
                             value="">
                     </div>
                     <div class="form-group">
-                        <label for="detailHaarkleur">Haarkleur : </label> <input type="text" class="form-control" id="detailHaarkleur"
+                        <label for="haarkleurDetail">Haarkleur : </label> <input type="text" class="form-control" id="haarkleurDetail"
                             value="">
                     </div>
                     <div class="form-group">
@@ -29,24 +30,121 @@
                             value="">
                     </div>
                     <div class="form-group">
-                        <label for="detailGewicht">Gewicht : </label> <input type="text" class="form-control" id="detailGewicht"
+                        <label for="gewichtDetail">Gewicht : </label> <input type="text" class="form-control" id="gewichtDetail"
                             value="">
                     </div>
                     <div class="form-group">
-                        <label for="detailLeeftijd">Leeftijd : </label> <input type="text" class="form-control"
-                            id="detailLeeftijd" value="">
+                        <label for="geboortedatumDetail">Geboortedatum : </label> <input placeholder="JJJJ-MM-DD" type="text" class="form-control"
+                            id="geboortedatumDetail" value="">
                     </div>
                     <div class="form-group">
                         <input type="submit" name="btnSubmit"  id="btnSubmit" class="btnContact" value="Zoeken" onclick="return false;" />
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
-                            class="profielfoto">
-                    </div>
+                    <div id="foutmelding1"></div>
                 </div>
             </div>
+        </form>
+    </div>
+    <div class="container contact-form2">
+        <form>
+            <h3><span id="profielVan">Gedetailleerd zoeken </span></h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="grootteGedetail">Grootte : </label> <input type="text" class="form-control" id="grootteGedetail"
+                            value="">   
+                            <select id="grootteOperator" class="api_demo_param_chb">
+                                <option value="%" selected="">></option>
+                                <option>>=</option>
+                                <option>=</option>
+                                <option><</option>
+                                <option><=</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gewichtGedetail">Gewicht : </label> <input type="text" class="form-control" id="gewichtGedetail"
+                            value=""> <select id="gewichtOperator" class="api_demo_param_chb">
+                                <option value="%" selected="">></option>
+                                <option>>=</option>
+                                <option>=</option>
+                                <option><</option>
+                                <option><=</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="geboortedatumGedetail">Geboren vanaf : </label> <input placeholder="JJJJ-MM-DD" type="text" class="form-control"
+                            id="geboortedatumGedetail" value=""><select id="geboordatumOperator" class="api_demo_param_chb">
+                                <option value="%" selected="">></option>
+                                <option>>=</option>
+                                <option>=</option>
+                                <option><</option>
+                                <option><=</option>
+                            </select>
+                    </div>
+                    <label for="orderby">Sorteren op: </label> 
+                    <select id="sorteerSelect" class="api_demo_param_chb">
+                        <option value="%" selected="">Grootte</option>
+                        <option>Gewicht</option>
+                        <option>Geboortedatum</option>
+                    </select>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit"  id="btnSubmit2" class="btnContact" value="Zoeken" onclick="return false;" />
+                    </div>
+                    <div id="foutmelding2"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container contact-form3">
+        <form>
+            <h3><span id="profielVan">Zoeken met range </span></h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="grootteMin">Grootte : </label> <input type="text" class="form-control" id="grootteMin"
+                            value="" placeholder="minimum">   <input type="text" class="form-control" id="grootteMax"
+                            value="" placeholder="maximum">   
+                           
+                    </div>
+                    <div class="form-group">
+                        <label for="gewichtMin">Gewicht : </label> <input type="text" class="form-control" id="gewichtMin"
+                            value="" placeholder="minimum"> <input type="text" class="form-control" id="gewichtMax"
+                            value="" placeholder="maximum">   
+                    </div>
+                    <div class="form-group">
+                        <label for="geboorteMin">Geboren vanaf : </label> <input placeholder="JJJJ-MM-DD" type="text" class="form-control"
+                            id="geboorteMin" value="" placeholder="minimum"> <input type="text" class="form-control" id="geboorteMax"
+                            value="" placeholder="maximum">   
+                    </div>
+                    <label for="orderby">Sorteren op: </label> 
+                    <select id="sorteerSelect2" class="api_demo_param_chb">
+                        <option value="%" selected="">Grootte</option>
+                        <option>Gewicht</option>
+                        <option>Geboortedatum</option>
+                    </select>
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit"  id="btnSubmit3" class="btnContact" value="Zoeken" onclick="return false;" />
+                    </div>
+                    <div id="foutmelding3"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container contact-form4">
+        <form>
+            <h3><span id="profielVan">Uw zoekresultaten: </span></h3>
+            <table id="zoekertjes">
+                <thead>
+              </thead>
+              <tbody id="zoekResultaten">
+                <tr>             
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                </tr>
+              </tfoot>
+                </table> 
         </form>
     </div>
 </body>
