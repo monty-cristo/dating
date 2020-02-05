@@ -39,10 +39,10 @@ export async function uploadPicture(name, picture) {
 
   try {
     const response = await fetch(request);
-    const { fileURL } = await response.json();
-    console.log(fileURL);
+    const { fileName } = await response.json();
+    console.log(fileName);
 
-    return fileURL;
+    return fileName;
   } catch ({ message }) {
     alert(message);
   }

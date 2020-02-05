@@ -33,9 +33,9 @@ window.onload = () => {
       //show the foto modal button
       btnShowModal.style.display = "initial";
 
-      btnShowModal.onclick = () => {
+      btnShowModal.onclick = async () => {
         $('#fotoModal').modal('show');
-        playWebcam(video);
+        await playWebcam(video);
         $('#fotoModal').modal('handleUpdate');
       }
 
@@ -45,9 +45,9 @@ window.onload = () => {
         picture = src;
       }
       
-      btnDitIsHem.onclick = () => {
+      btnDitIsHem.onclick = async () => {
         if(picture) {
-          picture = uploadPicture("foto", picture);
+          picture = await uploadPicture("foto", picture);
           $('#fotoModal').modal('hide');
         }
       }
@@ -98,12 +98,14 @@ window.onload = () => {
               "Content-Type": "application/json"
             })
           });
+
+          console.log(JSON.stringify(data));
   
           try {
             const response = await fetch(request);
             const { id } = await response.json();
             sessionStorage.setItem("user", id);
-            window.location.href = "/";
+            //window.location.href = "/";
           } catch ({ message }) {
             alert(message);
           }
