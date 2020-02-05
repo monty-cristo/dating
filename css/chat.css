@@ -64,12 +64,29 @@
   gap: 15px;
   background-color: var(--color-dark-black);
   padding: 20px;
+  height: 100vh;
 }
 
 .conversation {
   display: grid;
   grid-auto-rows: max-content;
   gap: 10px;
+  overflow-y: auto;
+  /* fucking scrollbar */
+  padding-right: 1em;
+}
+
+.conversation::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.conversation::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.conversation::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark-red);
+  outline: 1px solid slategrey;
 }
 
 .message {
