@@ -122,3 +122,45 @@ h6, h3 {
     width:250px;
     margin: 0em;
 }
+
+.box {
+    box-shadow: 0em 0.2em 0.5em rgba(31, 5, 0, 0.7);
+}
+
+.effect2 {
+    position: relative;
+  }
+  .effect2:before, .effect2:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #1E0500;
+    -webkit-box-shadow: 0 15px 10px #1E0500;
+    -moz-box-shadow: 0 15px 10px #1E0500;
+    box-shadow: 0 15px 10px #1E0500;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+  .effect2:after
+  {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+
+ul {
+      list-style-type: none;
+      display: inline-block;
+}

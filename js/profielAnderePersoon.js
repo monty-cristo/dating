@@ -49,6 +49,17 @@ window.onload = function () {
     };
 }
 
+document.getElementById("afmelden").onclick = function() {
+    sessionStorage.removeItem("user");
+
+}
+
+document.getElementById("naarProfiel").onclick = function() {
+    const url = "/profielAnderePersoon.html?id=" + sessionStorage.getItem('user');
+    this.setAttribute("href", url);
+}
+
+
 
 
 
