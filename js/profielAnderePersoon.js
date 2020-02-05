@@ -38,29 +38,28 @@ window.onload = function () {
         .catch(function (error) { console.log(error); });
 
 
-    }
+    //favorieten teovoegen
+    let favorietPersoon = false;
+    document.getElementById('buttonLike').onclick = async function (e) {
+        e.preventDefault();
+        await addFavorite();
+        favorietPersoon = true;
+        if (favorietPersoon) { document.getElementById('sterFavoriet').innerText = '★'; }
+        else document.getElementById('sterFavoriet').innerText = '☆';
+    };
+}
 
-//favorieten teovoegen
-let favorietPersoon = false;
-let rooturl = 'https://scrumserver.tenobe.org/scrum/api';
-document.getElementById('buttonLike').onclick = async function (e){
-    e.preventDefault();
-    await addFavorite();
-    favorietPersoon = true;
 
-};
-console.log(favorietPersoon)
-if (favorietPersoon) {document.getElementById('buttonLike').innerText= "Je hebt deze persoon een like gegeven."};
 
 
 //lovecoins spenderen om extra informatie te krijgen
 
 /*berichten sturen
 
-document.getElementById('knop22').addEventListener('click', function (e) {  
-    let vanId =  document.getElementById('input22_1').value; 
-    let naarId =  document.getElementById('input22_2').value; 
-    let bericht =  document.getElementById('input22_3').value; 
+document.getElementById('knop22').addEventListener('click', function (e) {
+    let vanId =  document.getElementById('input22_1').value;
+    let naarId =  document.getElementById('input22_2').value;
+    let bericht =  document.getElementById('input22_3').value;
 
     let url=rooturl+'/bericht/post.php';
     //LET OP : rooturl = https://scrumserver.tenobe.org/scrum/api

@@ -22,12 +22,12 @@ window.onload = function() {
 
     try {
       const response = await fetch(request);
-      const user = await response.json();
+      const { message, id } = await response.json();
 
-      if (user.message == "Authorized") {
+      if (message == "Authorized") {
         console.log("Reactie van backend API : Correcte gegevens");
-        sessionStorage.setItem("user", user.id);
-        window.location.href = "profile.html";
+        sessionStorage.setItem("user", id);
+        window.location.href = `zoekpagina.html`;
       }
     } catch ({ message }) {
       alert(message);
