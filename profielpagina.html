@@ -2,9 +2,10 @@
 <html lang="nl">
 
 <head>
+    <script src="profielpagina.js" defer></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Scrum Frontend Demo : detailpagina van een gebruiker</title>
+    <title>profielpagina</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../img/faviconFrontend.ico">
 
@@ -12,79 +13,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/userDetail.css">
     <script src="js/profielpagina.js" type="module"></script>
+    <link rel="stylesheet" href="css/dating.css">
+
 </head>
 
 <body>
-
+    <header><img class="logo" src="images/flexidating-logo.png" height="100px"></header>
     <div class="container contact-form">
         <div class="contact-image">
             <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
         </div>
         <form>
-            <h3><span id="profielVan">Details van </span></h3>
+            <h3><span id="profielVan"></span></h3>
             <div class="row">
                 <div class="col-md-6">
                     
-
-                    <div class="form-group">
-                        <label for="detailNick">Nickname : </label> <input type="text" class="form-control" id="detailNick"
-                            value="nog niet ontvangen" >
+                    <div class="form-group clearfix">
+                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
+                            class="profielfoto right">
                     </div>
                     <div class="form-group">
-                        <label for="detailFnaam">Familienaam : </label> <input type="text" class="form-control" id="detailFnaam"
-                            value="nog niet ontvangen" style="display:none">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailVnaam">Voornaam : </label> <input type="text" class="form-control" id="detailVnaam"
-                            value="nog niet ontvangen" style="display:none">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailGeboortedatum">Geboortedatum : </label> <input type="text" class="form-control"
-                            id="detailGeboortedatum" value="nog niet ontvangen" style="display:none">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailSexe">Sexe : </label> <input type="text" class="form-control" id="detailSexe"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailGewicht">Gewicht : </label> <input type="text" class="form-control" id="detailGewicht"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailGrootte">Grootte : </label> <input type="text" class="form-control" id="detailGrootte"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailHaarkleur">Haarkleur : </label> <input type="text" class="form-control" id="detailHaarkleur"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailOogkleur">Oogkleur : </label> <input type="text" class="form-control" id="detailOogkleur"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailBeroep">Beroep : </label> <input type="text" class="form-control" id="detailBeroep"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailEmail">Email : </label> <input type="text" class="form-control" id="detailEmail"
-                            value="nog niet ontvangen" style="display:none">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailLovecoins">Lovecoins : </label> <input type="text" class="form-control" id="detailLovecoins"
-                            value="nog niet ontvangen" style="display:none">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailWachtWoord">Wachtwoord : </label> <input type="text" class="form-control" id="detailWachtWoord"
-                            value="nog niet ontvangen" style="display:none">
+                        <button class="btn btn-primary right right0">Bericht</button>
+                        <button class="btn btn-primary right">leuk vinden</button>
                     </div>
 
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
-                            class="profielfoto">
-                    </div>
                     <div class="form-group">
                         <textarea id="inhoudBericht"></textarea>
                         <button class="buttonProfiel" id="buttonBericht">Bericht sturen naar deze persoon</button>
@@ -94,7 +48,63 @@
                     </div>
                     <div class="form-group">
                         <button class="buttonProfiel" id="buttonLovecoin">Spendeer lovecoins voor extra informatie</button>
+                                                
+                        <div>
+                            <h6>Nickname</h6>
+                            <p id="detailNick"></p>
+                        </div>
+
+                        <div style="display: none;">
+                            <h6>Familienaam</h6>
+                            <p id="detailFnaam"></p>
+                        </div>
+
+                        <div style="display: none;">
+                            <h6>Voornaam</h6>
+                            <p id="detailVnaam"></p>
+                        </div>
+                 
+                        <div style="display: none;">
+                            <h6>Geboortedatum</h6>
+                            <p id="detailGeboortedatum"></p>
+                        </div>
+                   
+                        <div>
+                            <h6>Geslacht</h6>
+                            <p id="detailSexe"></p>
+                        </div>
+                   
+                        <div>
+                            <h6>Gewicht</h6>
+                            <p id="detailGewicht"></p>
+                        </div>
+                   
+                        <div>
+                            <h6>Grootte</h6>
+                            <p id="detailGrootte"></p>
+                        </div>
+                  
+                        <div>
+                            <h6>Haarkleur</h6>
+                            <p id="detailHaarkleur"></p>
+                        </div> 
+                   
+                        <div>
+                            <h6>Oogkleur</h6>
+                            <p id="detailOogkleur"></p>
+                        </div>
+                     
+                        <div>
+                            <h6>Beroep</h6>
+                            <p id="detailBeroep"></p>
+                        </div>
+                    
+                        <div style="display: none;">
+                            <h6>E-mail</h6>
+                            <p id="detailEmail"></p>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </form>
