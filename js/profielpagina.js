@@ -17,22 +17,21 @@ window.onload = function () {
 
             profielData = data;
 
-            document.getElementById('detailNick').value = profielData.nickname;
-            document.getElementById('detailFnaam').value = profielData.familienaam;
-            document.getElementById('detailVnaam').value = profielData.voornaam;
-            document.getElementById('detailGeboortedatum').value = profielData.geboortedatum;
-            document.getElementById('detailHaarkleur').value = profielData.haarkleur;
-            document.getElementById('detailBeroep').value = profielData.beroep;
-            document.getElementById('detailEmail').value = profielData.email;
-            document.getElementById('detailLovecoins').value = profielData.lovecoins;
+            document.querySelector("title").innerText = profielData.nickname;
+            document.getElementById('detailNick').innerText = profielData.nickname;
+            document.getElementById('detailFnaam').innerText = profielData.familienaam;
+            document.getElementById('detailVnaam').innerText = profielData.voornaam;
+            document.getElementById('detailGeboortedatum').innerText = profielData.geboortedatum;
+            document.getElementById('detailHaarkleur').innerText = profielData.haarkleur;
+            document.getElementById('detailBeroep').innerText = profielData.beroep;
+            document.getElementById('detailEmail').innerText = profielData.email;
             document.getElementById('detailFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
             document.getElementById('detailFoto').setAttribute('alt', 'foto van ' + profielData.voornaam + ' ' + profielData.familienaam);
-            document.getElementById('profielVan').innerText = 'Details van ' + profielData.voornaam + ' ' + profielData.familienaam;
-            document.getElementById('detailSexe').value = profielData.sexe;
-            document.getElementById('detailOogkleur').value = profielData.oogkleur;
-            document.getElementById('detailGewicht').value = profielData.gewicht;
-            document.getElementById('detailGrootte').value = profielData.grootte;
-            document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
+            document.getElementById('profielVan').innerText = profielData.nickname;
+            document.getElementById('detailSexe').innerText = profielData.sexe;
+            document.getElementById('detailOogkleur').innerText = profielData.oogkleur;
+            document.getElementById('detailGewicht').innerText = profielData.gewicht;
+            document.getElementById('detailGrootte').innerText = profielData.grootte;
 
 
         })
@@ -42,10 +41,8 @@ window.onload = function () {
     }
 
 //favorieten teovoegen
-let ingelogdId = 7;
 let favorietPersoon = false;
 let rooturl = 'https://scrumserver.tenobe.org/scrum/api';
-console.log(ingelogdId, profielId, 1, rooturl)
 document.getElementById('buttonLike').onclick = async function (e){
     e.preventDefault();
     await addFavorite();
