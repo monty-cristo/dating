@@ -114,3 +114,8 @@ h6, h3 {
     clear: both;
     display: table;
   }
+
+#sterFavoriet {
+    padding: 0em;
+    border: 0em;
+}
