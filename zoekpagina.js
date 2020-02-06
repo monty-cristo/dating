@@ -12,44 +12,83 @@ window.onload = async () => {
     createDropdown(oogkleuren, oogKleur);
 }
 
+    // I FEEL LUCKY
+    
 const rooturl = 'https://scrumserver.tenobe.org/scrum/api';
+document.getElementById('lucky').addEventListener('click', function (e) {
+    document.getElementById('foutmelding1').innerText = "";
+    const parent = document.getElementById('zoekResultaten');
+    while (parent.childNodes[0]) {
+        parent.childNodes[0].remove();
+        }
+    let url= rooturl+ '/profiel/search.php?sexe=';
+        fetch(url)
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {const luckyFriend= Math.floor(Math.random() * data.length);
+            console.log(luckyFriend);
+            lijnVullen(luckyFriend, data);
+        })
+        .catch(function (error) { console.log(error); });
+        
+});
+
 document.getElementById('btnSubmit').addEventListener('click', function (e) {
-    console.log(document.getElementById('haarkleur').options[document.getElementById('haarkleur').selectedIndex])
-    console.log(document.getElementById('haarkleur').options[0])
-    let geslacht = document.getElementById('geslachtDetail').options[document.getElementById('geslachtDetail').selectedIndex].innerText;
-    let oogKleur = document.getElementById('oogKleur').options[document.getElementById('oogKleur').selectedIndex].innerText;
-    let haarKleur = document.getElementById('haarkleur').options[document.getElementById('haarkleur').selectedIndex].innerText;
-    let grootte = document.getElementById('grootteDetail').value;
-    let gewicht = document.getElementById('gewichtDetail').value;
-    let geboortedatum = document.getElementById('geboortedatumDetail').value;
-    let geboordatumOperator = operatorMaken(document.getElementById('datumOperator').options[document.getElementById('datumOperator').selectedIndex].innerText);
-    let grootteOperator = operatorMaken(document.getElementById('grootteOperator').options[document.getElementById('grootteOperator').selectedIndex].innerText);
-    let gewichtOperator = operatorMaken(document.getElementById('gewichtOperator').options[document.getElementById('gewichtOperator').selectedIndex].innerText);
-    let minGrootte = document.getElementById('grootteMin').value;
-    let maxGrootte = document.getElementById('grootteMax').value;
-    let minGewicht = document.getElementById('gewichtMin').value;
-    let maxGewicht = document.getElementById('gewichtMax').value;
-    let minGeboorte = document.getElementById('geboorteMin').value;
-    let maxGeboorte = document.getElementById('geboorteMax').value;
-    let orderby = document.getElementById('sorteerSelect').options[document.getElementById('sorteerSelect').selectedIndex].innerText.toLowerCase();
+
+    //ontzettend veel constanten declaren
+    const geslacht = controleren("geslachtDetail");
+    const oogKleur = controleren("oogKleur");
+    const haarKleur = controleren("haarkleur");
+    const grootte = document.getElementById('grootteDetail').value;
+    const gewicht = document.getElementById('gewichtDetail').value;
+    const geboortedatum = document.getElementById('geboortedatumDetail').value;
+    const geboordatumOperator = operatorMaken(document.getElementById('datumOperator').options[document.getElementById('datumOperator').selectedIndex].innerText);
+    const grootteOperator = operatorMaken(document.getElementById('grootteOperator').options[document.getElementById('grootteOperator').selectedIndex].innerText);
+    const gewichtOperator = operatorMaken(document.getElementById('gewichtOperator').options[document.getElementById('gewichtOperator').selectedIndex].innerText);
+    const minGrootte = document.getElementById('grootteMin').value;
+    const maxGrootte = document.getElementById('grootteMax').value;
+    const minGewicht = document.getElementById('gewichtMin').value;
+    const maxGewicht = document.getElementById('gewichtMax').value;
+    const minGeboorte = document.getElementById('geboorteMin').value;
+    const maxGeboorte = document.getElementById('geboorteMax').value;
+    const orderby = document.getElementById('sorteerSelect').options[document.getElementById('sorteerSelect').selectedIndex].innerText.toLowerCase();
+
+    //url samenstellen
     let url = rooturl + '/profiel/search.php?sexe=' + geslacht + '&oogkleur=' + oogKleur + '&haarkleur=' + haarKleur + '&orderBy=' + orderby;
-    if (minGrootte == "" || maxGrootte == "") { grootteOperator = grootteOperator, url += '&grootte=' + grootte } else { url += '&rangeMinGrootte=' + minGrootte + '&rangeMaxGrootte=' + maxGrootte + '&grootteOperator=range'; }
-    if (minGewicht == "" || maxGewicht == "") { gewichtOperator = gewichtOperator, url += '&gewicht=' + gewicht } else { url += '&rangeMinGewicht=' + minGewicht + '&rangeMaxGewicht=' + maxGewicht + '&gewichtOperator=range'; };
-    if (minGeboorte == "" || maxGeboorte == "") { geboordatumOperator = geboordatumOperator, url += '&geboortedatum=' + geboortedatum } else { url += '&rangeMinGeboortedatum=' + minGeboorte + '&rangeMaxGeboortedatum=' + maxGeboorte + '&geboordatumOperator=' + geboordatumOperator };
-    console.log(url);
+    if (minGrootte == "" || maxGrootte == "") {
+        url += '&grootte=' + grootte +'&grootteOperator=' + grootteOperator;} else {
+            url += '&rangeMinGrootte=' + minGrootte + '&rangeMaxGrootte=' + maxGrootte + '&grootteOperator=range'; }
+    if (minGewicht == "" || maxGewicht == "") {
+        url += '&gewicht=' + gewicht +'&gewichtOperator=' + gewichtOperator;} else {
+         url += '&rangeMinGewicht=' + minGewicht + '&rangeMaxGewicht=' + maxGewicht + '&gewichtOperator=range'; }
+    if (minGeboorte == "" || maxGeboorte == "") {
+        url += '&geboortedatum=' + geboortedatum +'&geboortedatumOperator=' + geboordatumOperator;} else {
+             url += '&rangeMinGeboortedatum=' + minGeboorte + '&rangeMaxGeboortedatum=' + maxGeboorte + '&geboortedatumOperator=' + geboordatumOperator };
     fetch(url)
         .then(function (resp) { return resp.json(); })
         .then(function (data) {
             if (data.length > 0) {
-                resultatenTonen(data), document.getElementById('foutmelding1').innerText = "";
-                console.log(geslacht, grootte, gewicht, geboortedatum, geboordatumOperator, grootteOperator, gewichtOperator, minGrootte, maxGrootte, minGewicht, maxGewicht, minGeboorte, maxGeboorte);
+                resultatenTonen(data); 
+                document.getElementById('foutmelding1').innerText = "";
+                console.log(data);
             } else {
                 document.getElementById('foutmelding1').innerText = 'Geen profielen gevonden';
+                const parent = document.getElementById('zoekResultaten');
+                while (parent.childNodes[0]) {
+                parent.childNodes[0].remove();
+                }
             }
         })
         .catch(function (error) { console.log(error); });
 });
 
+function controleren(id) {
+    if (document.getElementById(id).options[document.getElementById(id).selectedIndex] === (document.getElementById(id).options[0])) {
+        return "";
+    }
+    else {
+        return document.getElementById(id).options[document.getElementById(id).selectedIndex].innerText;
+    }
+}
 
 document.getElementById('extraGrootteKnop').addEventListener('click', function (e) {
     document.getElementById("extraGrootteOperator").style.display = "";
@@ -88,9 +127,6 @@ document.getElementById('minderDatumKnop').addEventListener('click', function (e
     document.getElementById('datumMin').style.display = "none";
 })
 
-function controleren(id){
-if(document.getElementById(id).options[document.getElementById(id).selectedIndex]===(document.getElementById(id).options[0])){return "";}
-}
 function operatorMaken(operator) {
     switch (operator) {
         case '<':
@@ -124,6 +160,9 @@ function resultatenTonen(data) {
     }
 }
 
+
+
+
 function lijnVullen(teller, data) {
     const tr = document.getElementById('zoekResultaten').insertRow();
     addCell(tr, data[teller].sexe);
@@ -146,3 +185,4 @@ function addCell(parent, cellCol) {
     tableCell.innerText = tableCellInput;
     //tableCell.className = nameclass; 
 }
+

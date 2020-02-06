@@ -15,12 +15,12 @@
 <body>
     <div class="container contact-form">
         <form>
-            <h3><span id="profielVan">Specifiek Zoeken </span></h3>
+            <h3><span id="profielVan">Friend Finder </span></h3>
             <div class="row">
                 <div class="col-md-6">
                     <label for="geslachtDetail" class="api_demo_lbl">Geslacht : </label>
                     <select id="geslachtDetail" class="api_demo_param_chb">
-                        <option value="%" selected="" disabled>alle geslachten</option>
+                        <option value="%" selected="">alle geslachten</option>
                         <option>v</option>
                         <option>m</option>
                         <option>x</option>
@@ -28,25 +28,25 @@
                     <div class="form-group">
                     <label for="oogKleur" class="api_demo_lbl">Oogkleur : </label>
                     <select id="oogKleur" class="api_demo_param_chb">
-                        <option value="%" selected="" disabled>alle kleuren</option>
+                        <option value="%" selected="">alle kleuren</option>
                     </select>
                     </div>
                     <div class="form-group">
                     <label for="Haarkleur" class="api_demo_lbl">Haarkleur : </label>
                     <select id="haarkleur" class="api_demo_param_chb">
-                        <option value="%" selected="" disabled>alle kleuren</option>
+                        <option value="%" selected="">alle kleuren</option>
                     </select>
                     </div>
                     <div class="form-group">
-                        <label for="grootteDetail">Grootte : </label> <input type="text" class="form-control"
+                        <label for="grootteDetail">Grootte : </label> <input type="number" class="form-control"
                             id="grootteDetail" value=""> <input type="submit" name="btnSubmit" id="extraGrootteKnop" class="btnContact" value='V'
                             onclick="return false;" /> <input type="submit" name="btnSubmit" id="minderGrootteKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
                     </div>
                     <div class="form-group" id="extraGrootteOperator" style=display:none>
                         <select id="grootteOperator" class="api_demo_param_chb">
-                            <option value="%" selected="">></option>
-                            <option>>=</option>
+                            <option value="%" selected="">>=</option>
+                            <option>></option>
                             <option>=</option>
                             <option><</option> 
                             <option><=</option> 
@@ -65,8 +65,8 @@
                     </div>
                     <div class="form-group" id="extraGewichtOperator" style=display:none>
                         <select id="gewichtOperator" class="api_demo_param_chb">
-                            <option value="%" selected="">></option>
-                            <option>>=</option>
+                            <option value="%" selected="" >>=</option>
+                            <option>></option>
                             <option>=</option>
                             <option><</option> 
                             <option><=</option> 
@@ -85,8 +85,8 @@
                     </div>
                     <div class="form-group" id="extraDatumOperator" style=display:none>
                         <select id="datumOperator" class="api_demo_param_chb">
-                            <option value="%" selected="">></option>
-                            <option>>=</option>
+                            <option value="%" selected="">>=</option>
+                            <option>></option>
                             <option>=</option>
                             <option><</option> 
                             <option><=</option> 
@@ -94,8 +94,8 @@
                     </div> 
                     <div class="form-group" id="datumMin" style=display:none>
                         <label for="datumMin"></label> <input type="text" class="form-control"
-                        id="geboorteMin" value="" placeholder="minimum"> <input type="text" class="form-control"
-                        id="geboorteMax" value="" placeholder="maximum">
+                        id="geboorteMin" value="" placeholder="minimum JJJJ-MM-DD"> <input type="text" class="form-control"
+                        id="geboorteMax" value="" placeholder="maximum JJJJ-MM-DD">
                     </div>
                     <label for="orderby">Sorteren op: </label>
                     <select id="sorteerSelect" class="api_demo_param_chb">
@@ -107,7 +107,6 @@
                         <input type="submit" name="btnSubmit" id="btnSubmit" class="btnContact" value="Zoeken"
                             onclick="return false;" />
                     </div>
-                    <div id="foutmelding1"></div>
                 </div>
             </div>
         </form>
@@ -143,7 +142,13 @@
                 </tfoot>
             </table>
         </form>
-    </div>
+        <div id="foutmelding1"></div>
+        <div class="feelingLucky">
+            
+                <input type="submit" name="lucky" id="lucky" class="btnContact" value="I FEEL LUCKY"
+                    onclick="return false;" />
+            
+        </div>
+    </div>    
 </body>
-
 </html>
