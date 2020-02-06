@@ -56,6 +56,7 @@
   object-fit: cover;
   background-color: var(--color-red);
   border-radius: 100%;
+  display: block;
 }
 
 .chat {
@@ -98,6 +99,7 @@
 
 .message.zender {
   margin-left: auto;
+  background-color: var(--color-red);
 }
 
 .chat div {
@@ -116,4 +118,33 @@
   border: 0px;
   color: var(--color-grey);
   padding: 10px;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .app {
+    grid-template-columns: auto 1fr;
+  }
+
+  .contactList {
+    padding: 10px;
+    align-content: end;
+  }
+
+  .contactItem {
+    display: block;
+  }
+
+  .contactItem div {
+    display: none;
+  }
+
+  .message {
+    width: initial;
+    height: max-content;
+  }
+
+  .message:not(.zender) {
+    margin-right: auto;
+  }
 }
