@@ -17,6 +17,11 @@ h1 {
   text-align: center;
 }
 
+label {
+  font-size: 0.9rem;
+  color: var(--color-red);
+}
+
 .inputs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

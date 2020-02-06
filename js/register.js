@@ -204,7 +204,7 @@ class App extends Component {
     }
 
     return html`
-      <h1>Registreer</h1>
+    <h1>Registreer</h1>
       <form onsubmit=${this.onsubmit}>
         <div class="inputs">
           <div>
