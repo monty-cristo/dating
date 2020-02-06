@@ -17,10 +17,6 @@ h1 {
   text-align: center;
 }
 
-h1, h2, h6 {
-  color: var(--color-red);
-}
-
 label {
   font-size: 0.9rem;
   color: var(--color-red);

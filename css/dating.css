@@ -204,3 +204,12 @@ a:hover {
     padding-right: 10px !important;
 }
 
+.contact-image img {
+    transform: none;
+    background-color: white;
+    padding: 0.35em;
+}
+
+.extraMarge {
+    margin-top: 0.5em;
+}
