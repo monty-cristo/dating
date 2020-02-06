@@ -64,6 +64,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getOptions();
+    this.setDate();
   }
 
   getOptions = async () => {
@@ -73,6 +74,22 @@ class App extends Component {
       eyeColors
     });
   };
+
+  setDate = () => {
+    const currentDate = new Date();
+
+    const max = new Date();
+    max.setFullYear(currentDate.getFullYear() - 18);
+    max.setMonth(currentDate.getMonth());
+    max.setDate(currentDate.getDate());
+    this.dateRef.max = max.toISOString().slice(0,10);
+
+    const min = new Date();
+    min.setFullYear(currentDate.getFullYear() - 105);
+    min.setMonth(currentDate.getMonth());
+    min.setDate(currentDate.getDate());
+    this.dateRef.min = min.toISOString().slice(0,10);
+  }
 
   onNickname = async ({ target }) => {
     target.setCustomValidity("");
@@ -211,7 +228,7 @@ class App extends Component {
               required
             />
             <div>
-            <label for="geboortedatum"><h6>Geboortedatum</h6></label>
+            <label for="geboortedatum">Geboortedatum</label>
             <input
               type="date"
               value=${state.geboortedatum}
@@ -219,6 +236,7 @@ class App extends Component {
               name="geboortedatum"
               id="geboortedatum"
               required
+              ref=${c => (this.dateRef = c)}
             />
             </div>
             ${this.state.foto &&
