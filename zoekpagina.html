@@ -2,7 +2,6 @@
 <html lang="nl">
 
 <head>
-    <script src='zoekpagina.js' defer></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Zoeken</title>
@@ -10,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="module" src='zoekpagina.js'></script>
 </head>
 
 <body>
@@ -20,32 +20,89 @@
                 <div class="col-md-6">
                     <label for="geslachtDetail" class="api_demo_lbl">Geslacht : </label>
                     <select id="geslachtDetail" class="api_demo_param_chb">
-                        <option value="%" selected="">alle geslachten</option>
+                        <option value="%" selected="" disabled>alle geslachten</option>
                         <option>v</option>
                         <option>m</option>
                         <option>x</option>
-                        <option>%</option>
                     </select>
                     <div class="form-group">
-                        <label for="oogDetail">Oogkleur : </label> <input type="text" class="form-control"
-                            id="oogDetail" value="">
+                    <label for="oogKleur" class="api_demo_lbl">Oogkleur : </label>
+                    <select id="oogKleur" class="api_demo_param_chb">
+                        <option value="%" selected="" disabled>alle kleuren</option>
+                    </select>
                     </div>
                     <div class="form-group">
-                        <label for="haarkleurDetail">Haarkleur : </label> <input type="text" class="form-control"
-                            id="haarkleurDetail" value="">
+                    <label for="Haarkleur" class="api_demo_lbl">Haarkleur : </label>
+                    <select id="haarkleur" class="api_demo_param_chb">
+                        <option value="%" selected="" disabled>alle kleuren</option>
+                    </select>
                     </div>
                     <div class="form-group">
                         <label for="grootteDetail">Grootte : </label> <input type="text" class="form-control"
-                            id="grootteDetail" value="">
+                            id="grootteDetail" value=""> <input type="submit" name="btnSubmit" id="extraGrootteKnop" class="btnContact" value='V'
+                            onclick="return false;" /> <input type="submit" name="btnSubmit" id="minderGrootteKnop" class="btnContact" value='Λ'style=display:none
+                            onclick="return false;" />
+                    </div>
+                    <div class="form-group" id="extraGrootteOperator" style=display:none>
+                        <select id="grootteOperator" class="api_demo_param_chb">
+                            <option value="%" selected="">></option>
+                            <option>>=</option>
+                            <option>=</option>
+                            <option><</option> 
+                            <option><=</option> 
+                        </select> 
+                    </div> 
+                    <div class="form-group" id="grootteMinimum" style=display:none>
+                        <label for="grootteMin"></label> <input type="text" class="form-control"
+                        id="grootteMin" value="" placeholder="minimum"> <input type="text" class="form-control"
+                        id="grootteMax" value="" placeholder="maximum">
                     </div>
                     <div class="form-group">
                         <label for="gewichtDetail">Gewicht : </label> <input type="text" class="form-control"
-                            id="gewichtDetail" value="">
+                            id="gewichtDetail" value=""> <input type="submit" name="btnSubmit" id="extraGewichtKnop" class="btnContact" value='V'
+                            onclick="return false;" /><input type="submit" name="btnSubmit" id="minderGewichtKnop" class="btnContact" value='Λ'style=display:none
+                            onclick="return false;" />
+                    </div>
+                    <div class="form-group" id="extraGewichtOperator" style=display:none>
+                        <select id="gewichtOperator" class="api_demo_param_chb">
+                            <option value="%" selected="">></option>
+                            <option>>=</option>
+                            <option>=</option>
+                            <option><</option> 
+                            <option><=</option> 
+                        </select> 
+                    </div> 
+                    <div class="form-group" id="gewichtMinimum" style=display:none>
+                        <label for="gewichtMin"></label> <input type="text" class="form-control"
+                        id="gewichtMin" value="" placeholder="minimum"> <input type="text" class="form-control"
+                        id="gewichtMax" value="" placeholder="maximum">
                     </div>
                     <div class="form-group">
                         <label for="geboortedatumDetail">Geboortedatum : </label> <input placeholder="JJJJ-MM-DD"
-                            type="text" class="form-control" id="geboortedatumDetail" value="">
+                            type="text" class="form-control" id="geboortedatumDetail" value=""> <input type="submit" name="btnSubmit" id="extraDatumKnop" class="btnContact" value='V'
+                            onclick="return false;" /><input type="submit" name="btnSubmit" id="minderDatumKnop" class="btnContact" value='Λ'style=display:none
+                            onclick="return false;" />
                     </div>
+                    <div class="form-group" id="extraDatumOperator" style=display:none>
+                        <select id="datumOperator" class="api_demo_param_chb">
+                            <option value="%" selected="">></option>
+                            <option>>=</option>
+                            <option>=</option>
+                            <option><</option> 
+                            <option><=</option> 
+                        </select> 
+                    </div> 
+                    <div class="form-group" id="datumMin" style=display:none>
+                        <label for="datumMin"></label> <input type="text" class="form-control"
+                        id="geboorteMin" value="" placeholder="minimum"> <input type="text" class="form-control"
+                        id="geboorteMax" value="" placeholder="maximum">
+                    </div>
+                    <label for="orderby">Sorteren op: </label>
+                    <select id="sorteerSelect" class="api_demo_param_chb">
+                        <option value="%" selected="">Grootte</option>
+                        <option>Gewicht</option>
+                        <option>Geboortedatum</option>
+                    </select>
                     <div class="form-group">
                         <input type="submit" name="btnSubmit" id="btnSubmit" class="btnContact" value="Zoeken"
                             onclick="return false;" />
@@ -55,94 +112,6 @@
             </div>
         </form>
     </div>
-    <div class="container contact-form2">
-        <form>
-            <h3><span id="profielVan">Gedetailleerd zoeken </span></h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="grootteGedetail">Grootte : </label> <input type="text" class="form-control"
-                            id="grootteGedetail" value="">
-                        <select id="grootteOperator" class="api_demo_param_chb">
-                            <option value="%" selected="">></option>
-                            <option>>=</option>
-                            <option>=</option>
-                            <option>
-                                <</option> <option>
-                                    <=</option> </select> </div> <div class="form-group">
-                                        <label for="gewichtGedetail">Gewicht : </label> <input type="text"
-                                            class="form-control" id="gewichtGedetail" value=""> <select
-                                            id="gewichtOperator" class="api_demo_param_chb">
-                                            <option value="%" selected="">></option>
-                                            <option>>=</option>
-                                            <option>=</option>
-                                            <option>
-                                                <</option> <option>
-                                                    <=</option> </select> </div> <div class="form-group">
-                                                        <label for="geboortedatumGedetail">Geboren vanaf : </label>
-                                                        <input placeholder="JJJJ-MM-DD" type="text" class="form-control"
-                                                            id="geboortedatumGedetail" value=""><select
-                                                            id="geboordatumOperator" class="api_demo_param_chb">
-                                                            <option value="%" selected="">></option>
-                                                            <option>>=</option>
-                                                            <option>=</option>
-                                                            <option>
-                                                                <</option> <option>
-                                                                    <=</option> </select> </div> <label for="orderby">
-                                                                        Sorteren op: </label>
-                                                                        <select id="sorteerSelect"
-                                                                            class="api_demo_param_chb">
-                                                                            <option value="%" selected="">Grootte
-                                                                            </option>
-                                                                            <option>Gewicht</option>
-                                                                            <option>Geboortedatum</option>
-                                                                        </select>
-                                                                        <div class="form-group">
-                                                                            <input type="submit" name="btnSubmit"
-                                                                                id="btnSubmit2" class="btnContact"
-                                                                                value="Zoeken"
-                                                                                onclick="return false;" />
-                                                                        </div>
-                                                                        <div id="foutmelding2"></div>
-                    </div>
-                </div>
-        </form>
-    </div>
-    <div class="container contact-form3">
-        <form>
-            <h3><span id="profielVan">Zoeken met range </span></h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="grootteMin">Grootte : </label> <input type="text" class="form-control"
-                            id="grootteMin" value="" placeholder="minimum"> <input type="text" class="form-control"
-                            id="grootteMax" value="" placeholder="maximum">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="gewichtMin">Gewicht : </label> <input type="text" class="form-control"
-                            id="gewichtMin" value="" placeholder="minimum"> <input type="text" class="form-control"
-                            id="gewichtMax" value="" placeholder="maximum">
-                    </div>
-                    <div class="form-group">
-                        <label for="geboorteMin">Geboren vanaf : </label> <input placeholder="minimum (JJJJ-MM-DD)" type="text"
-                            class="form-control" id="geboorteMin" value="" > <input type="text"
-                            class="form-control" id="geboorteMax" value="" placeholder="maximum (JJJJ-MM-DD)">
-                    </div>
-                    <label for="orderby">Sorteren op: </label>
-                    <select id="sorteerSelect2" class="api_demo_param_chb">
-                        <option value="%" selected="">Grootte</option>
-                        <option>Gewicht</option>
-                        <option>Geboortedatum</option>
-                    </select>
-                    <div class="form-group">
-                        <input type="submit" name="btnSubmit" id="btnSubmit3" class="btnContact" value="Zoeken"
-                            onclick="return false;" />
-                    </div>
-                    <div id="foutmelding3"></div>
-                </div>
-            </div>
-        </form>
     </div>
     <div class="container contact-form4">
         <form>
