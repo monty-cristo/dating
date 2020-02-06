@@ -6,14 +6,26 @@ import getDropdownArray from "./methods/getDropdownArray.js";
 
 class Webcam extends Component {
   async componentDidMount() {
-    //await playWebcam(this.videoRef);
+    await playWebcam(this.videoRef);
   }
 
   //unmount webcam
 
   snap = e => {
     const src = createPicture(this.videoRef, this.canvasRef);
+    this.setState({
+      src
+    });
     this.imageRef.src = src;
+  };
+
+  confirmPicture = async e => {
+    e.preventDefault();
+    if (this.state.src) {
+      const fileName = await uploadPicture("webcam", this.state.src);
+      this.props.confirmPicture(fileName);
+      this.props.toggleWebcam();
+    }
   };
 
   toggleWebcam = e => {
@@ -23,7 +35,6 @@ class Webcam extends Component {
   render() {
     return html`
       <video
-        src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
         id="video"
         width="300"
         autoplay
@@ -38,7 +49,7 @@ class Webcam extends Component {
       />
       <canvas id="canvas" ref=${c => (this.canvasRef = c)}></canvas>
       <input type="button" value="Snap!" onclick=${this.snap} />
-      <input type="button" value="Dit is 'em!" />
+      <input type="button" value="Dit is 'em!" onclick=${this.confirmPicture} />
       <input type="button" value="Terug" onclick=${this.toggleWebcam} />
     `;
   }
@@ -63,6 +74,41 @@ class App extends Component {
     });
   };
 
+  onNickname = async ({ target }) => {
+    target.setCustomValidity("");
+    //check if the nickname is already taken.
+    const url = "https://scrumserver.tenobe.org/scrum/api/profiel/exists.php";
+
+    const data = {
+      nickname: target.value
+    };
+
+    this.setState({
+      nickname: target.value
+    });
+
+    const request = new Request(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    });
+
+    try {
+      if (target.value) {
+        const response = await fetch(request);
+        const { message } = await response.json();
+        //FUCKING WHY DOES THIS NOT RETURN A FUCKING BOOLEAN????????????!!!!!!!!!!!!!!.
+        if (message !== "Profiel nickname beschikbaar") {
+          target.setCustomValidity("Nickname is already taken");
+        }
+      }
+    } catch ({ message }) {
+      alert(message);
+    }
+  };
+
   onInput = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
@@ -70,13 +116,14 @@ class App extends Component {
   };
 
   onWachtwoordCheck = ({ target }) => {
-    this.wachtwoordRef.setCustomValidity("");
+    target.setCustomValidity("");
     if (this.state.wachtwoord !== target.value) {
-      this.wachtwoordRef.setCustomValidity("Passwords must be the same!");
+      target.setCustomValidity("Passwords must be the same!");
     }
   };
 
   createUser = async () => {
+    //TODO: put data in a data object so you don't have to extract this shit
     const { hairColors, eyeColors, show, ...rest } = this.state;
 
     const data = {
@@ -86,7 +133,7 @@ class App extends Component {
       gewicht: 0,
       grootte: 0,
       beroep: "",
-      foto: "no_image.jpg",
+      foto: "no_image.png",
       lovecoins: "3",
       ...rest
     };
@@ -105,13 +152,11 @@ class App extends Component {
       const response = await fetch(request);
       const { id } = await response.json();
       sessionStorage.setItem("user", id);
-      window.location.href = "/";
+      window.location.href = "/zoekpagina.html";
     } catch ({ message }) {
       alert(message);
     }
   };
-
-  onPhotoClick = async e => {};
 
   onsubmit = async e => {
     e.preventDefault();
@@ -120,22 +165,26 @@ class App extends Component {
   };
 
   toggleWebcam = e => {
-    e.preventDefault();
     this.setState(prev => ({
       show: !prev.show
     }));
   };
 
+  confirmPicture = fileName => {
+    this.setState({
+      foto: fileName
+    });
+  };
+
   render({}, state) {
     if (state.show) {
       return html`
-        <${Webcam} toggleWebcam=${this.toggleWebcam} />
+        <${Webcam}
+          toggleWebcam=${this.toggleWebcam}
+          confirmPicture=${this.confirmPicture}
+        />
       `;
     }
-
-    //check if user has a webcam or camera
-    const md = navigator.mediaDevices;
-    const hasWebcam = !md || !md.enumerateDevices;
 
     return html`
       <h1>Registreer</h1>
@@ -168,14 +217,19 @@ class App extends Component {
               name="geboortedatum"
               required
             />
-            ${hasWebcam &&
+            ${this.state.foto &&
               html`
-                <input
-                  type="button"
-                  value="Trek een foto"
-                  onclick=${this.toggleWebcam}
+                <img
+                  src="https://scrumserver.tenobe.org/scrum/img/${this.state
+                    .foto}"
+                  alt="profiel foto"
                 />
               `}
+            <input
+              type="button"
+              value="Trek een foto"
+              onclick=${this.toggleWebcam}
+            />
           </div>
           <div>
             <h2>Kenmerken</h2>
@@ -245,7 +299,7 @@ class App extends Component {
             <input
               type="text"
               value=${state.nickname}
-              oninput=${this.onInput}
+              oninput=${this.onNickname}
               name="nickname"
               placeholder="Nickname"
               required
@@ -270,7 +324,6 @@ class App extends Component {
             <input
               type="password"
               oninput=${this.onWachtwoordCheck}
-              ref=${c => (this.wachtwoordRef = c)}
               name="wachtwoordCheck"
               placeholder="Wachtwoord Check"
               required
