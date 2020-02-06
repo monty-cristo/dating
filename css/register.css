@@ -37,13 +37,19 @@ select {
   border-radius: 0.25rem;
 }
 
-input[type="submit"], input[type="button"] {
+input[type="submit"],
+input[type="button"] {
   background-color: var(--color-red);
   color: white;
 }
 
+img,
+video {
+  border-radius: 0.25rem;
+}
+
 canvas {
-    display: none;
+  display: none;
 }
 
 /* Portrait */
@@ -60,5 +66,10 @@ canvas {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  img,
+  video {
+    width: 100%;
   }
 }
