@@ -210,13 +210,17 @@ class App extends Component {
               placeholder="Voornaam"
               required
             />
+            <div>
+            <label for="geboortedatum">Geboortedatum:</label>
             <input
               type="date"
               value=${state.geboortedatum}
               oninput=${this.onInput}
               name="geboortedatum"
+              id="geboortedatum"
               required
             />
+            </div>
             ${this.state.foto &&
               html`
                 <img
