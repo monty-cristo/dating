@@ -119,6 +119,10 @@ h1, h2, h6, h3 {
 
 }
 
+#lovecoin {
+    margin-right: 1em;
+}
+
 .clearfix::after {
     content: "";
     clear: both;

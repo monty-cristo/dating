@@ -39,6 +39,7 @@ window.onload = function () {
                 for (let index of document.getElementsByClassName("zichtbaar")) {
                     index.style.display = "";
                 }
+                document.getElementById("buttonLike").style.display = "none";
 
             } 
 

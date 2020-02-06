@@ -118,3 +118,39 @@ function addCell(parent, cellCol) {
     tableCell.innerText = tableCellInput;
     //tableCell.className = nameclass; 
 }
+
+//Navigatie
+window.onload = function () {
+
+    let profielData;
+
+    let url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + sessionStorage.getItem("user");
+
+    fetch(url)
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {
+
+            profielData = data;
+
+            document.getElementById('navigatieFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
+            document.getElementById("naarProfiel").innerText = profielData.nickname;
+
+            
+
+
+        })
+        .catch(function (error) { console.log(error); });
+        
+}
+
+
+document.getElementById("afmelden").onclick = function() {
+    sessionStorage.removeItem("user");
+
+}
+
+
+document.getElementById("naarProfiel").onclick = function() {
+    const url = "/profielAnderePersoon.html?id=" + sessionStorage.getItem('user');
+    this.setAttribute("href", url);
+}
