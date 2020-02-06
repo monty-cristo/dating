@@ -18,12 +18,12 @@ h1 {
 }
 
 h1, h2, h6 {
-  color: rgb(164, 30, 32);
+  color: var(--color-red);
 }
 
-h6 {
-  margin-bottom: 0;
-  font-size: 1em;
+label {
+  font-size: 0.9rem;
+  color: var(--color-red);
 }
 
 .inputs {
