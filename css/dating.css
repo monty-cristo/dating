@@ -93,7 +93,7 @@ body{
     cursor: pointer;
 }
 
-h6, h3 {
+h1, h2, h6, h3 {
     color: rgb(164, 30, 32) !important;
     margin-bottom: 0em;
 }
@@ -105,6 +105,10 @@ h6, h3 {
 
 .right0 {
     margin-right: 0em;
+}
+
+.right1 {
+    margin-left: 0em;
 }
 
 .clearfix::after {
@@ -131,7 +135,7 @@ h6, h3 {
     position: relative;
   }
   .effect2:before, .effect2:after {
-    z-index: -1 !;
+    z-index: -1;
     position: absolute;
     content: "";
     bottom: 15px;
@@ -193,5 +197,10 @@ ul  {
 
 a:hover {
     text-decoration: none;
+}
+
+.col-md-6 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
 

@@ -33,6 +33,9 @@ window.onload = function () {
             document.getElementById('detailGewicht').innerText = profielData.gewicht;
             document.getElementById('detailGrootte').innerText = profielData.grootte;
 
+            if (profielData.id === sessionStorage.getItem("user")) {
+                document.getElementById("updateButton").style.display = "";
+            } 
 
         })
         .catch(function (error) { console.log(error); });
@@ -59,14 +62,23 @@ window.onload = function () {
             document.getElementById('navigatieFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
             document.getElementById("naarProfiel").innerText = profielData.nickname;
 
+            
+
 
         })
         .catch(function (error) { console.log(error); });
+        
 }
+
+
 
 document.getElementById("afmelden").onclick = function() {
     sessionStorage.removeItem("user");
 
+}
+
+document.getElementById("updateButton").onclick = function() {
+    
 }
 
 document.getElementById("naarProfiel").onclick = function() {

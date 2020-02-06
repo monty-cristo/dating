@@ -187,7 +187,7 @@ class App extends Component {
     }
 
     return html`
-      <h1>Registreer</h1>
+    <h1>Registreer</h1>
       <form onsubmit=${this.onsubmit}>
         <div class="inputs">
           <div>
@@ -211,7 +211,7 @@ class App extends Component {
               required
             />
             <div>
-            <label for="geboortedatum">Geboortedatum:</label>
+            <label for="geboortedatum"><h6>Geboortedatum</h6></label>
             <input
               type="date"
               value=${state.geboortedatum}
