@@ -28,10 +28,6 @@ class Favorite extends Component {
     }
   };
 
-  unfavorite = e => {
-    this.props.unfavorite(this.props.favorite.id);
-  };
-
   render({}, { user: { nickname, foto, id } }) {
     return html`
       <li class="favorite">
@@ -42,7 +38,6 @@ class Favorite extends Component {
         <p>${nickname}</p>
         <a href="/profielAnderePersoon.html?id=${id}">Profiel</a>
         <a href="/chat.html?id=${id}">Chat</a>
-        <input type="button" value="❤️" onclick=${this.unfavorite} />
       </li>
     `;
   }
@@ -66,37 +61,6 @@ class App extends Component {
     }
   };
 
-  unfavorite = async id => {
-    const url = "https://scrumserver.tenobe.org/scrum/api/favoriet/delete.php";
-
-    const data = {
-      id
-    };
-
-    const request = new Request(url, {
-      method: "DELETE",
-      body: JSON.stringify(data),
-      headers: new Headers({
-        "Content-Type": "application/json"
-      })
-    });
-
-    try {
-      await fetch(request);
-
-      //delete local favorite so we don't need to make a network request each time.
-      //   const favorites = this.state.favorites.filter(favorite => favorite.anderId !== id);
-      //   console.log(favorites);
-      //   this.setState({
-      //       favorites
-      //   })
-
-      this.getFavorites();
-    } catch ({ message }) {
-      console.log({ message });
-    }
-  };
-
   render({}, { favorites = [] }) {
     return html`
       <h1>Favorites</h1>
@@ -104,7 +68,7 @@ class App extends Component {
         ${favorites.map(
           favorite =>
             html`
-              <${Favorite} favorite=${favorite} unfavorite=${this.unfavorite} />
+              <${Favorite} favorite=${favorite}/>
             `
         )}
       </ul>
