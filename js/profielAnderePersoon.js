@@ -47,6 +47,21 @@ window.onload = function () {
         if (favorietPersoon) { document.getElementById('sterFavoriet').innerText = '★'; }
         else document.getElementById('sterFavoriet').innerText = '☆';
     };
+
+    url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + sessionStorage.getItem("user");
+
+    fetch(url)
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {
+
+            profielData = data;
+
+            document.getElementById('navigatieFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
+            document.getElementById("naarProfiel").innerText = profielData.nickname;
+
+
+        })
+        .catch(function (error) { console.log(error); });
 }
 
 document.getElementById("afmelden").onclick = function() {

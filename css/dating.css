@@ -131,7 +131,7 @@ h6, h3 {
     position: relative;
   }
   .effect2:before, .effect2:after {
-    z-index: -1;
+    z-index: -1 !;
     position: absolute;
     content: "";
     bottom: 15px;
@@ -160,7 +160,38 @@ h6, h3 {
     left: auto;
   }
 
-ul {
+ul  {
       list-style-type: none;
-      display: inline-block;
+      margin: 0em;
+      padding: 0em;
 }
+
+.navigatie {
+    float: right;
+  }
+  
+.navigatieLink, #navigatieFoto {
+    font-size: 0.7em;
+    display: block;
+    padding: 8px;
+    margin: 0.5em;
+    margin-top: 0.9em;
+}
+
+#navigatieFoto {
+    margin-right: 0em;
+    border-radius: 50%;
+}
+
+#naarProfiel {
+    margin-left: 0em;
+}
+
+.logo {
+    float: left;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
