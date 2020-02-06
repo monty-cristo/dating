@@ -30,7 +30,7 @@ window.onload = function () {
             document.getElementById('detailGewicht').value = profielData.gewicht;
             document.getElementById('detailGrootte').value = profielData.grootte;
             document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
-            document.getElementById("lovecoin").innerText = profielData.lovecoins;
+           
 
 
         })
@@ -54,18 +54,23 @@ window.onload = function () {
         profielData.grootte = document.getElementById('detailGrootte').value;
         profielData.wachtwoord = document.getElementById('detailWachtWoord').value;
 
+
         var request = new Request(urlUpdate, {
             method: 'PUT',
             body: JSON.stringify(profielData),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
+        
+
         });
 
         fetch(request)
             .then(function (resp) { return resp.json(); })
             .then(function (data) { console.log(data); })
             .catch(function (error) { console.log(error); });
+
+        
 
     });         
 };

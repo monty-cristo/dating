@@ -32,9 +32,14 @@ window.onload = function () {
             document.getElementById('detailOogkleur').innerText = profielData.oogkleur;
             document.getElementById('detailGewicht').innerText = profielData.gewicht;
             document.getElementById('detailGrootte').innerText = profielData.grootte;
+            document.getElementById("lovecoin").innerText = profielData.lovecoins;
 
             if (profielData.id === sessionStorage.getItem("user")) {
                 document.getElementById("updateButton").style.display = "";
+                for (let index of document.getElementsByClassName("zichtbaar")) {
+                    index.style.display = "";
+                }
+
             } 
 
         })
