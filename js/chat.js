@@ -1,9 +1,5 @@
 "use strict";
-import {
-  html,
-  render,
-  Component
-} from "../vendor/js/preact.js";
+import { html, render, Component } from "../vendor/js/preact.js";
 
 class ContactItem extends Component {
   changeContact = selectedUser => {
@@ -36,7 +32,7 @@ class ContactList extends Component {
               contact=${contact}
               changeContact=${this.props.changeContact}
               index=${index}
-              selected=${selectedUser === index}
+              selected=${selectedUser == index}
             />
           `
         )}
@@ -48,22 +44,27 @@ class ContactList extends Component {
 class Chat extends Component {
   onTextChange = e => {
     this.props.onTextChange(e);
-  }
+  };
 
   onTextSend = async () => {
     await this.props.onTextSend();
     //TODO: clear text from chat input
-  }
+  };
 
-  render({ conversation = [] }) {
+  render({ conversation = [], text = "" }) {
     return html`
-      <d class="chat">
+      <div class="chat">
         <${Conversation} conversation=${conversation} />
         <div>
-          <input onchange=${this.onTextChange} type="text" placeholder="Stuur text..." />
+          <input
+            onchange=${this.onTextChange}
+            value=${text}
+            type="text"
+            placeholder="Stuur text..."
+          />
           <button onclick=${this.onTextSend} type="button">Send</button>
         </div>
-      </d>
+      </div>
     `;
   }
 }
@@ -92,10 +93,27 @@ class Message extends Component {
 }
 
 class App extends Component {
-  state = {
-    selectedUser: 0,
-    text: ""
-  };
+  constructor() {
+    super();
+
+    const state = {
+      text: "",
+      contacts: []
+    };
+
+    //Check to see if the user has a selected user in session.
+    if (sessionStorage.getItem("selectedUser")) {
+      this.state = {
+        ...state,
+        selectedUser: sessionStorage.getItem("selectedUser")
+      };
+    } else {
+      this.state = {
+        ...state,
+        selectedUser: 0
+      };
+    }
+  }
 
   componentDidMount() {
     this.getConversations();
@@ -103,6 +121,8 @@ class App extends Component {
 
   getConversations = async () => {
     const id = sessionStorage.getItem("user");
+    const url = new URL(window.location.href);
+    let selectedUser = this.state.selectedUser;
 
     try {
       const response = await fetch(
@@ -111,7 +131,22 @@ class App extends Component {
       const conversations = await response.json();
 
       //TODO: split this up in functions
-      const userIds = conversations.map(([{ partnerId }]) => partnerId);
+      let userIds = conversations.map(([{ partnerId }]) => partnerId);
+      
+      //Do we need to make a new conversation?
+      if (url.searchParams.has("id")) {
+        //check if we aren't already talking to this person
+        const contactId = url.searchParams.get("id");
+        console.log(userIds);
+        if(userIds.includes(contactId)) {
+          selectedUser = userIds.indexOf(contactId);
+          this.changeContact(selectedUser);
+          console.log(selectedUser);
+        } else {
+          //Add him to the end of the list
+          userIds = [userIds, url.searchParams.get("id")];
+        }
+      }
 
       let contacts = await Promise.all(
         userIds.map(async id => {
@@ -131,29 +166,34 @@ class App extends Component {
 
       this.setState({
         conversations,
-        conversation: conversations[0],
+        conversation: conversations[selectedUser],
         contacts
       });
+
+      //TODO:scroll to the bottom of the chat.
+      //element.scrollIntoView(false);
     } catch ({ message }) {
       console.log(message);
     }
   };
 
   changeContact = selectedUser => {
+    sessionStorage.setItem("selectedUser", selectedUser);
+
     this.setState(({ conversations }) => ({
       selectedUser,
-      conversation: conversations[selectedUser]
+      conversation: conversations[parseInt(selectedUser)]
     }));
   };
 
   onTextChange = e => {
     this.setState({ text: e.target.value });
-  }
+  };
 
   onTextSend = async () => {
     //send text.
     const { text, contacts, selectedUser } = this.state;
-    const url = "https://scrumserver.tenobe.org/scrum/api/bericht/post.php"
+    const url = "https://scrumserver.tenobe.org/scrum/api/bericht/post.php";
 
     const vanId = sessionStorage.getItem("user");
     const naarId = contacts[selectedUser].id;
@@ -163,9 +203,7 @@ class App extends Component {
       vanId,
       naarId,
       bericht
-    }
-
-    console.log(JSON.stringify(data));
+    };
 
     const request = new Request(url, {
       method: "POST",
@@ -177,16 +215,15 @@ class App extends Component {
 
     try {
       const response = await fetch(request);
-      console.log(response);
-      //const { message, id } = await response.json();
-      const json = await response.json();
-      console.log(json);
-      //console.log(`message: ${message} | id=${id}`);
 
+      //Clear text
+      this.setState({ text: "" });
+      this.getConversations();
+      //console.log(`message: ${message} | id=${id}`);
     } catch ({ message }) {
       alert(message);
     }
-  }
+  };
 
   render(
     {},
@@ -207,7 +244,11 @@ class App extends Component {
           changeContact=${this.changeContact}
           selectedUser=${selectedUser}
         />
-        <${Chat} conversation=${conversation} onTextChange=${this.onTextChange} onTextSend=${this.onTextSend}  />
+        <${Chat}
+          conversation=${conversation}
+          onTextChange=${this.onTextChange}
+          onTextSend=${this.onTextSend}
+        />
       </div>
     `;
   }
