@@ -34,18 +34,27 @@ window.onload = function () {
             document.getElementById('detailGrootte').innerText = profielData.grootte;
             document.getElementById("lovecoin").innerText = profielData.lovecoins;
 
+            document.getElementById("bericht").onclick = function() {
+                const url = "/chat.html?id=" + profielData.id;
+                this.setAttribute("href", url);
+            }
+
             if (profielData.id === sessionStorage.getItem("user")) {
                 document.getElementById("updateButton").style.display = "";
                 for (let index of document.getElementsByClassName("zichtbaar")) {
                     index.style.display = "";
                 }
                 document.getElementById("buttonLike").style.display = "none";
+                document.getElementById("favorieten").style.display = "";
+                document.getElementById("bericht").style.display = "none";
 
-            } 
+            }
+            
 
         })
         .catch(function (error) { console.log(error); });
 
+       
 
     //favorieten teovoegen
     let favorietPersoon = false;
@@ -91,6 +100,10 @@ document.getElementById("naarProfiel").onclick = function() {
     const url = "/profielAnderePersoon.html?id=" + sessionStorage.getItem('user');
     this.setAttribute("href", url);
 }
+
+
+
+
 
 
 
