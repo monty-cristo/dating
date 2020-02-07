@@ -72,6 +72,10 @@ class App extends Component {
             `
         )}
       </ul>
+      <nav>
+        <a href="/zoekpagina.html">Zoeken</a>
+        <a href="/profielAnderePersoon.html?id=${sessionStorage.getItem("user")}">Profiel</a>
+      </nav>
     `;
   }
 }
