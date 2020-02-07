@@ -1,7 +1,7 @@
 "use strict";
 import { html, render, Component } from "../vendor/js/preact.js";
 
-if(document.referrer != window.location && performance.navigation.type != 1) {
+if (document.referrer != window.location && performance.navigation.type != 1) {
   sessionStorage.removeItem("selectedUser");
 }
 
@@ -300,11 +300,19 @@ class App extends Component {
 
     return html`
       <div class="app">
-        <${ContactList}
-          contacts=${contacts}
-          changeContact=${this.changeContact}
-          selectedUser=${selectedUser}
-        />
+        <aside>
+          <${ContactList}
+            contacts=${contacts}
+            changeContact=${this.changeContact}
+            selectedUser=${selectedUser}
+          />
+          <nav>
+            <ul>
+              <li><a href="/zoekpagina.html">Zoek</a></li>
+              <li><a href="/favorites.html">Favorieten</a></li>
+            </ul>
+          </nav>
+        </aside>
         <${Chat}
           conversation=${conversations[selectedUser]}
           onTextChange=${this.onTextChange}
