@@ -4,8 +4,8 @@ window.onload = function () {
 
     let profielData;
 
-    let profielId = '3';
-    //let profielId = Math.floor(Math.random() * 7)+1; //random profiel van 0 - 7
+
+    let profielId = sessionStorage.getItem("user");
 
     let url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + sessionStorage.getItem("user");
 
@@ -15,7 +15,6 @@ window.onload = function () {
 
             profielData = data;
 
-            document.getElementById('detailNick').value = profielData.nickname;
             document.getElementById('detailFnaam').value = profielData.familienaam;
             document.getElementById('detailVnaam').value = profielData.voornaam;
             document.getElementById('detailGeboortedatum').value = profielData.geboortedatum;
@@ -24,27 +23,41 @@ window.onload = function () {
             document.getElementById('detailEmail').value = profielData.email;
             document.getElementById('detailFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
             document.getElementById('detailFoto').setAttribute('alt', 'foto van ' + profielData.voornaam + ' ' + profielData.familienaam);
-            document.getElementById('profielVan').innerText = profielData.voornaam+ " " + profielData.familienaam;
+            document.getElementById('profielVan').innerText = profielData.voornaam + " " + profielData.familienaam;
             document.getElementById('detailSexe').value = profielData.sexe;
             document.getElementById('detailOogkleur').value = profielData.oogkleur;
             document.getElementById('detailGewicht').value = profielData.gewicht;
             document.getElementById('detailGrootte').value = profielData.grootte;
             document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
-           
+
 
 
         })
         .catch(function (error) { console.log(error); });
 
+    const datum = document.getElementById('detailGeboortedatum');
 
-    document.getElementById('btnSubmit').addEventListener('click', function (e) {
+    const currentDate = new Date();
+
+    const max = new Date();
+    max.setFullYear(currentDate.getFullYear() - 18);
+    max.setMonth(currentDate.getMonth());
+    max.setDate(currentDate.getDate());
+    datum.max = max.toISOString().slice(0, 10);
+
+    const min = new Date();
+    min.setFullYear(currentDate.getFullYear() - 105);
+    min.setMonth(currentDate.getMonth());
+    min.setDate(currentDate.getDate());
+    datum.min = min.toISOString().slice(0, 10);
+
+    document.getElementById("form").addEventListener("submit", async e => {
         e.preventDefault();
+
         let urlUpdate = 'https://scrumserver.tenobe.org/scrum/api/profiel/update.php';
 
-        profielData.nickname = document.getElementById('detailNick').value;
         profielData.familienaam = document.getElementById('detailFnaam').value;
         profielData.voornaam = document.getElementById('detailVnaam').value;
-        profielData.geboortedatum = document.getElementById('detailGeboortedatum').value;
         profielData.haarkleur = document.getElementById('detailHaarkleur').value;
         profielData.beroep = document.getElementById('detailBeroep').value;
         profielData.email = document.getElementById('detailEmail').value;
@@ -55,26 +68,24 @@ window.onload = function () {
         profielData.wachtwoord = document.getElementById('detailWachtWoord').value;
 
 
-        var request = new Request(urlUpdate, {
+        const request = new Request(urlUpdate, {
             method: 'PUT',
             body: JSON.stringify(profielData),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
-        
-
         });
 
-        fetch(request)
-            .then(function (resp) { return resp.json(); })
-            .then(function (data) { console.log(data); })
-            .catch(function (error) { console.log(error); });
+        try {
+            await fetch(request);
 
-        window.location.href = `/profielAnderePersoon.html?id=${sessionStorage.getItem("user")}`;
+            window.location.href = `/profielAnderePersoon.html?id=${sessionStorage.getItem("user")}`;
+        } catch (error) {
+            console.log(error.message);
+        }
+    })
 
-    });    
-    
-    document.getElementById("btnDelete").onclick = function() {
-        window.location.href = "/index.html";
-    }
+    // document.getElementById("btnDelete").onclick = function () {
+    //     window.location.href = "/index.html";
+    // }
 };

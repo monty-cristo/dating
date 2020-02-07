@@ -2,6 +2,7 @@
 <html lang="nl">
 
 <head>
+    <script src="js/profile.js" defer></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Profiel</title>
@@ -9,90 +10,106 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dating.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <script src="js/profile.js" defer></script>
+
 </head>
 
 <body>
     <header class="box">
         <img src="images/flexidating-logo.png" height="100px" />
-      </header>
+    </header>
     <div class="container contact-form effect2">
         <div class="contact-image">
             <img src="/images/Flexidating-icon.png" alt="rocket_contact" />
         </div>
-        <form>
+        <form id="form">
             <h3><span id="profielVan"></span></h3>
             <div class="row">
                 <div class="col-md-6">
-                    
-                    
+
+
                     <div class="form-group">
-                        <label for="detailNick"><h6>Nickname</h6></label> <input type="text" class="form-control" id="detailNick"
-                            value="nog niet ontvangen">
+                        <label for="detailFnaam">
+                            <h6>Familienaam</h6>
+                        </label> <input type="text" class="form-control" id="detailFnaam" maxlength="1000" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailFnaam"><h6>Familienaam</h6></label> <input type="text" class="form-control" id="detailFnaam"
-                            value="nog niet ontvangen" >
+                        <label for="detailVnaam">
+                            <h6>Voornaam</h6>
+                        </label> <input type="text" class="form-control" id="detailVnaam" maxlength="1000" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailVnaam"><h6>Voornaam</h6></label> <input type="text" class="form-control" id="detailVnaam"
-                            value="nog niet ontvangen" >
+                        <label for="detailGeboortedatum">
+                            <h6>Geboortedatum</h6>
+                        </label> <input type="date" class="form-control" id="detailGeboortedatum" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailGeboortedatum"><h6>Geboortedatum</h6></label> <input type="text" class="form-control"
-                            id="detailGeboortedatum" value="nog niet ontvangen">
+                        <label for="detailSexe">
+                            <h6>Geslacht</h6>
+                        </label> <select id="detailSexe" required>
+                            <option value="m">m</option>
+                            <option value="v">v</option>
+                            <option value="x">x</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="detailSexe"><h6>Geslacht</h6></label> <input type="text" class="form-control" id="detailSexe"
-                            value="nog niet ontvangen">
+                        <label for="detailGewicht">
+                            <h6>Gewicht</h6>
+                        </label> <input type="number" class="form-control" id="detailGewicht" min="30" max="635"
+                            required>
                     </div>
                     <div class="form-group">
-                        <label for="detailGewicht"><h6>Gewicht</h6></label> <input type="text" class="form-control" id="detailGewicht"
-                            value="nog niet ontvangen">
+                        <label for="detailGrootte">
+                            <h6>Grootte</h6>
+                        </label> <input type="number" class="form-control" id="detailGrootte" min="55"
+                            max="272" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailGrootte"><h6>Grootte</h6></label> <input type="text" class="form-control" id="detailGrootte"
-                            value="nog niet ontvangen">
+                        <label for="detailHaarkleur">
+                            <h6>Haarkleur</h6>
+                        </label> <input type="text" class="form-control" id="detailHaarkleur" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailHaarkleur"><h6>Haarkleur</h6></label> <input type="text" class="form-control" id="detailHaarkleur"
-                            value="nog niet ontvangen">
+                        <label for="detailOogkleur">
+                            <h6>Oogkleur</h6>
+                        </label> <input type="text" class="form-control" id="detailOogkleur" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailOogkleur"><h6>Oogkleur</h6></label> <input type="text" class="form-control" id="detailOogkleur"
-                            value="nog niet ontvangen">
+                        <label for="detailBeroep">
+                            <h6>Beroep</h6>
+                        </label> <input type="text" class="form-control" id="detailBeroep" required>
                     </div>
                     <div class="form-group">
-                        <label for="detailBeroep"><h6>Beroep</h6></label> <input type="text" class="form-control" id="detailBeroep"
-                            value="nog niet ontvangen">
-                    </div>
-                    <div class="form-group">
-                        <label for="detailEmail"><h6>Email</h6></label> <input type="text" class="form-control" id="detailEmail"
-                            value="nog niet ontvangen">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="detailWachtWoord"><h6>Wachtwoord</h6></label> <input type="text" class="form-control" id="detailWachtWoord"
-                            value="nog niet ontvangen">
+                        <label for="detailEmail">
+                            <h6>Email</h6>
+                        </label> <input type="text" class="form-control" id="detailEmail" required>
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="btnSubmit"  id="btnSubmit" class="btn btn-primary extraMarge" value="Update" onclick="return false;" />
-                        <input type="button" name="btnDelete"  id="btnDelete" class="btn btn-primary extraMarge" value="Delete profile"/>
+                        <label for="detailWachtWoord">
+                            <h6>Wachtwoord</h6>
+                        </label> <input type="text" class="form-control" id="detailWachtWoord" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="btnSubmit" id="btnSubmit" class="btn btn-primary extraMarge"
+                            value="Update"/>
+                        <input type="button" name="btnDelete" id="btnDelete" class="btn btn-primary extraMarge"
+                            value="Delete profile" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
-                            class="profielfoto">
+                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png"
+                            alt="profielfoto" class="profielfoto">
                     </div>
-                    
+                    <div>
+                        <img src="images/lovecoin.png" height="25px">
+                        <span id="lovecoin"></span>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>
