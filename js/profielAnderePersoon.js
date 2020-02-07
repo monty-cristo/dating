@@ -1,5 +1,6 @@
 "use strict";
 import addFavorite from './methods/addFavorite.js';
+import deleteProfile from './methods/deleteProfile.js';
 
 //let profielId = 3 //Math.floor(Math.random() * 4)+1; random profiel van 0 - 4
 const profielId = new URL(window.location.href).searchParams.get("id");
@@ -41,6 +42,8 @@ window.onload = async function () {
             showData(profielData);
             document.getElementById("bericht").style.display = "none";
             document.getElementById("buttonLike").style.display = "none";
+            document.getElementById("delete").style.display = "initial";
+            document.getElementById("updateLink").style.display = "initial";
         } else {
 
             console.log("foo");
@@ -62,20 +65,20 @@ window.onload = async function () {
                 }
 
                 document.querySelector("title").innerText = "*****";
-                document.getElementById('detailNick').innerText = "*****";
+                document.getElementById('detailNick').innerText = profielData.nickname;
                 document.getElementById('detailFnaam').innerText = "*****";
                 document.getElementById('detailVnaam').innerText = "*****";
                 document.getElementById('detailGeboortedatum').innerText = "*****";
-                document.getElementById('detailHaarkleur').innerText = "*****";
-                document.getElementById('detailBeroep').innerText = "*****";
+                document.getElementById('detailHaarkleur').innerText = profielData.haarkleur;
+                document.getElementById('detailBeroep').innerText = profielData.beroep;
                 document.getElementById('detailEmail').innerText = "*****";
                 document.getElementById('detailFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
                 document.getElementById('detailFoto').setAttribute('alt', 'foto van ' + "*****" + ' ' + "*****");
                 document.getElementById('profielVan').innerText = "*****";
-                document.getElementById('detailSexe').innerText = "*****";
-                document.getElementById('detailOogkleur').innerText = "*****";
-                document.getElementById('detailGewicht').innerText = "*****";
-                document.getElementById('detailGrootte').innerText = "*****";
+                document.getElementById('detailSexe').innerText = profielData.sexe;
+                document.getElementById('detailOogkleur').innerText = profielData.oogkleur;
+                document.getElementById('detailGewicht').innerText = profielData.gewicht;
+                document.getElementById('detailGrootte').innerText = profielData.grootte;
                 document.getElementById('detailSterrenbeeld').innerText = "*****";
 
             }
@@ -94,7 +97,7 @@ window.onload = async function () {
 
             included = favorites.map(favorite => favorite.mijnId).includes(profielId);
 
-            if (included || added) {
+            if (included) {
                 //Delete favorite
                 const url = `https://scrumserver.tenobe.org/scrum/api/favoriet/delete.php`;
 
@@ -127,6 +130,12 @@ window.onload = async function () {
             console.log(error.message);
         }
     };
+
+    document.getElementById("delete").onclick = async(e) => {
+        e.preventDefault();
+        await deleteProfile();
+        location.href = "/";
+    }
 
     const url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + sessionStorage.getItem("user");
 
