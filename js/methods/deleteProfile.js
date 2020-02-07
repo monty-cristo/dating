@@ -9,10 +9,14 @@ async function deleteProfile() {
     let response = await fetch(url);
     let { wachtwoord } = await response.json();
 
-    if (wachtwoord === wachtwoordPrompt) {
+    console.log(wachtwoord == wachtwoordPrompt);
+
+    if (wachtwoord == wachtwoordPrompt) {
       const data = {
         id
       };
+
+      console.log("deleting");
 
       url = "https://scrumserver.tenobe.org/scrum/api/profiel/delete.php";
 
