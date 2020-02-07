@@ -1,5 +1,9 @@
 "use strict";
 
+if (sessionStorage.getItem("user") === null) {
+    window.location.href = "/index.html";
+}
+
 window.onload = function () {
 
     let profielData;
