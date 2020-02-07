@@ -1,4 +1,7 @@
 "use strict";
+if (sessionStorage.getItem("user") = null) {
+    window.location.href = `/register.html`;
+}
 import getDropdownArray from "./methods/getDropdownArray.js";
 import createDropdown from "./methods/createDropdown.js";
 window.onload = async function () {
