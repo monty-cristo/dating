@@ -40,6 +40,7 @@ window.onload = async function () {
         if (profielId == sessionStorage.getItem("user")) {
             showData(profielData);
             document.getElementById("bericht").style.display = "none";
+            document.getElementById("buttonLike").style.display = "none";
         } else {
 
             console.log("foo");
