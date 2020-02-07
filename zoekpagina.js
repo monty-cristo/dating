@@ -3,6 +3,10 @@
 import getDropdownArray from "./js/methods/getDropdownArray.js";
 import createDropdown from "./js/methods/createDropdown.js";
 
+if (sessionStorage.getItem("user") === null) {
+    window.location.href = "/index.html";
+}
+
 window.onload = async () => {
     const oogKleur = document.getElementById('oogKleur');
     const haarKleur = document.getElementById('haarkleur');

@@ -4,6 +4,10 @@ import addFavorite from './methods/addFavorite.js';
 //let profielId = 3 //Math.floor(Math.random() * 4)+1; random profiel van 0 - 4
 const profielId = new URL(window.location.href).searchParams.get("id");
 
+if (sessionStorage.getItem("user") === null) {
+    window.location.href = "/index.html";
+}
+
 //velden invullen
 window.onload = function () {
 
