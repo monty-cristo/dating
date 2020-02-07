@@ -55,6 +55,20 @@ h1 {
   text-decoration: none;
 }
 
+#app nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+#app nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  background-color: var(--color-dark-red);
+  border-radius: 0.25rem;
+  padding: 10px;
+}
+
 /* Portrait */
 @media (min-width: 320px) and (max-width: 480px) {
   body {
