@@ -30,7 +30,7 @@ window.onload = function () {
             document.getElementById('detailGewicht').value = profielData.gewicht;
             document.getElementById('detailGrootte').value = profielData.grootte;
             document.getElementById('detailWachtWoord').value = profielData.wachtwoord;
-            document.getElementById("lovecoin").innerText = profielData.lovecoins;
+           
 
 
         })
@@ -38,6 +38,7 @@ window.onload = function () {
 
 
     document.getElementById('btnSubmit').addEventListener('click', function (e) {
+        e.preventDefault();
         let urlUpdate = 'https://scrumserver.tenobe.org/scrum/api/profiel/update.php';
 
         profielData.nickname = document.getElementById('detailNick').value;
@@ -47,12 +48,12 @@ window.onload = function () {
         profielData.haarkleur = document.getElementById('detailHaarkleur').value;
         profielData.beroep = document.getElementById('detailBeroep').value;
         profielData.email = document.getElementById('detailEmail').value;
-        profielData.lovecoins = document.getElementById('detailLovecoins').value;
         profielData.sexe = document.getElementById('detailSexe').value;
         profielData.oogkleur = document.getElementById('detailOogkleur').value;
         profielData.gewicht = document.getElementById('detailGewicht').value;
         profielData.grootte = document.getElementById('detailGrootte').value;
         profielData.wachtwoord = document.getElementById('detailWachtWoord').value;
+
 
         var request = new Request(urlUpdate, {
             method: 'PUT',
@@ -60,6 +61,8 @@ window.onload = function () {
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
+        
+
         });
 
         fetch(request)
@@ -67,5 +70,11 @@ window.onload = function () {
             .then(function (data) { console.log(data); })
             .catch(function (error) { console.log(error); });
 
-    });         
+        window.location.href = `/profielAnderePersoon.html?id=${sessionStorage.getItem("user")}`;
+
+    });    
+    
+    document.getElementById("btnDelete").onclick = function() {
+        window.location.href = "/index.html";
+    }
 };

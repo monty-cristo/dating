@@ -17,18 +17,19 @@
 </head>
 
 <body>
-    <header class="box"><img class="logo" src="images/flexidating-logo.png" height="100px">
+    <header class="box clearfix"><img class="logo" src="images/flexidating-logo.png" height="100px">
     <nav class="navigatie">
         <ul>
-            <li><a href="" id="naarProfiel">Profiel</a></li>
-            <li><a href="/index.html" id="afmelden">Afmelden</a></li>
-            <li><a href="/zoekpagina.html">Zoeken</a></li>
+            <li class="navigatie"><a class="navigatieLink" href="/index.html" id="afmelden">Afmelden</a></li>
+            <li class="navigatie"><a class="navigatieLink" href="" id="naarProfiel"></a></li>
+            <li class="navigatie"><img id="navigatieFoto" height="50px"/></li>
+            <li class="navigatie"><a class="navigatieLink" href="/zoekpagina.html">Zoeken</a></li>
         </ul>
     </nav>
     </header>
     <div class="container contact-form effect2">
         <div class="contact-image">
-            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+            <img src="/images/Flexidating-icon.png" alt="rocket_contact" />
         </div>
         <form>
             <h3><span id="profielVan"></span></h3>
@@ -39,11 +40,20 @@
                         <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
                             class="profielfoto right">
                     </div>
+                   
                     <div class="form-group">
                         <button id="buttonLike" class="btn btn-primary right">
                             <span style='font-size:16px;' class="btn" id="sterFavoriet">&#9734;</span>
                              </button>
-                             <button class="btn btn-primary right right0">Bericht</button>
+                             <a href="" id="bericht" class="btn btn-primary right right0">Bericht</a>
+                             <a href="/profile.html" id="updateButton" class="btn btn-primary right right0 right1" style="display: none;">Update</a>
+                             <a href="/favorites.html" id="favorieten" class="btn btn-primary right right1" style="display: none;">Favorieten</a>
+                    </div>
+                    <div class="form-group">
+                        <div class="lovecoin zichtbaar" style="display: none;">
+                            <img src="images/lovecoin.png" height="25px">
+                            <span id="lovecoin"></span>
+                        </div>
                     </div>
 
                 </div>
@@ -54,17 +64,17 @@
                             <p id="detailNick"></p>
                         </div>
 
-                        <div style="display: none;">
+                        <div class="zichtbaar" style="display: none;">
                             <h6>Familienaam</h6>
                             <p id="detailFnaam"></p>
                         </div>
 
-                        <div style="display: none;">
+                        <div class="zichtbaar" style="display: none;">
                             <h6>Voornaam</h6>
                             <p id="detailVnaam"></p>
                         </div>
                  
-                        <div style="display: none;">
+                        <div class="zichtbaar" style="display: none;">
                             <h6>Geboortedatum</h6>
                             <p id="detailGeboortedatum"></p>
                         </div>
@@ -99,7 +109,7 @@
                             <p id="detailBeroep"></p>
                         </div>
                     
-                        <div style="display: none;">
+                        <div class="zichtbaar" style="display: none;">
                             <h6>E-mail</h6>
                             <p id="detailEmail"></p>
                         </div>

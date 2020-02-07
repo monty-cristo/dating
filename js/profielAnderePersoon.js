@@ -32,11 +32,31 @@ window.onload = function () {
             document.getElementById('detailOogkleur').innerText = profielData.oogkleur;
             document.getElementById('detailGewicht').innerText = profielData.gewicht;
             document.getElementById('detailGrootte').innerText = profielData.grootte;
+            document.getElementById("lovecoin").innerText = profielData.lovecoins;
 
+            const chatId = profielData.id;
+
+            document.getElementById("bericht").onclick = function() {
+                const url = "/chat.html?id=" + chatId;
+                this.setAttribute("href", url);
+            }
+
+            if (profielData.id === sessionStorage.getItem("user")) {
+                document.getElementById("updateButton").style.display = "";
+                for (let index of document.getElementsByClassName("zichtbaar")) {
+                    index.style.display = "";
+                }
+                document.getElementById("buttonLike").style.display = "none";
+                document.getElementById("favorieten").style.display = "";
+                document.getElementById("bericht").style.display = "none";
+
+            }
+            
 
         })
         .catch(function (error) { console.log(error); });
 
+       
 
     //favorieten teovoegen
     let favorietPersoon = false;
@@ -47,17 +67,45 @@ window.onload = function () {
         if (favorietPersoon) { document.getElementById('sterFavoriet').innerText = '★'; }
         else document.getElementById('sterFavoriet').innerText = '☆';
     };
+
+    url = 'https://scrumserver.tenobe.org/scrum/api/profiel/read_one.php?id=' + sessionStorage.getItem("user");
+
+    fetch(url)
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {
+
+            profielData = data;
+
+            document.getElementById('navigatieFoto').setAttribute('src', 'https://scrumserver.tenobe.org/scrum/img/' + profielData.foto);
+            document.getElementById("naarProfiel").innerText = profielData.nickname;
+
+            
+
+
+        })
+        .catch(function (error) { console.log(error); });
+        
 }
+
+
 
 document.getElementById("afmelden").onclick = function() {
     sessionStorage.removeItem("user");
 
 }
 
+document.getElementById("updateButton").onclick = function() {
+    
+}
+
 document.getElementById("naarProfiel").onclick = function() {
     const url = "/profielAnderePersoon.html?id=" + sessionStorage.getItem('user');
     this.setAttribute("href", url);
 }
+
+
+
+
 
 
 

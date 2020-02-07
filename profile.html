@@ -2,7 +2,6 @@
 <html lang="nl">
 
 <head>
-    <script src="js/profile.js" defer></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Profiel</title>
@@ -10,14 +9,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dating.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-
+    <script src="js/profile.js" defer></script>
 </head>
 
 <body>
-    <header><img class="logo" src="images/flexidating-logo.png" height="100px"></header>
-    <div class="container contact-form">
+    <header class="box">
+        <img src="images/flexidating-logo.png" height="100px" />
+      </header>
+    <div class="container contact-form effect2">
         <div class="contact-image">
-            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+            <img src="/images/Flexidating-icon.png" alt="rocket_contact" />
         </div>
         <form>
             <h3><span id="profielVan"></span></h3>
@@ -76,8 +77,8 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="btnSubmit"  id="btnSubmit" class="btn btn-primary" value="Update" onclick="return false;" />
-                        <input type="button" name="btnDelete"  id="btnDelete" class="btn btn-primary" value="Delete profile"/>
+                        <input type="submit" name="btnSubmit"  id="btnSubmit" class="btn btn-primary extraMarge" value="Update" onclick="return false;" />
+                        <input type="button" name="btnDelete"  id="btnDelete" class="btn btn-primary extraMarge" value="Delete profile"/>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -85,10 +86,7 @@
                         <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
                             class="profielfoto">
                     </div>
-                    <div>
-                        <img src="images/lovecoin.png" height="25px">
-                        <span id="lovecoin"></span>
-                    </div>
+                    
                 </div>
             </div>
         </form>

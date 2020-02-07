@@ -9,7 +9,7 @@
 
 .app {
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: max-content 1fr;
   height: 100vh;
 }
 
@@ -54,8 +54,9 @@
   width: 40px;
   height: 40px;
   object-fit: cover;
-  background-color: var(--color-grey);
+  background-color: var(--color-red);
   border-radius: 100%;
+  display: block;
 }
 
 .chat {
@@ -79,11 +80,11 @@
 .conversation::-webkit-scrollbar {
   width: 1em;
 }
- 
+
 .conversation::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 .conversation::-webkit-scrollbar-thumb {
   background-color: var(--color-dark-red);
   outline: 1px solid slategrey;
@@ -98,6 +99,7 @@
 
 .message.zender {
   margin-left: auto;
+  background-color: var(--color-red);
 }
 
 .chat div {
@@ -108,9 +110,6 @@
 
 .chat input {
   border: 0px;
-}
-
-.chat input::placeholder {
   padding: 10px;
 }
 
@@ -119,4 +118,33 @@
   border: 0px;
   color: var(--color-grey);
   padding: 10px;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .app {
+    grid-template-columns: auto 1fr;
+  }
+
+  .contactList {
+    padding: 10px;
+    align-content: end;
+  }
+
+  .contactItem {
+    display: block;
+  }
+
+  .contactItem div {
+    display: none;
+  }
+
+  .message {
+    width: initial;
+    height: max-content;
+  }
+
+  .message:not(.zender) {
+    margin-right: auto;
+  }
 }
