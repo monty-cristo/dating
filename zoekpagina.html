@@ -38,8 +38,8 @@
                     </select>
                     </div>
                     <div class="form-group">
-                        <label for="grootteDetail">Grootte : </label> <input type="number" class="form-control"
-                            id="grootteDetail" value=""> <input type="submit" name="btnSubmit" id="extraGrootteKnop" class="btnContact" value='V'
+                        <label for="grootteDetail">Grootte : </label> <input  class="form-control"
+                            id="grootteDetail" type="number" min="130" max="280"value=""> <input type="submit" name="btnSubmit" id="extraGrootteKnop" class="btnContact" value='V'
                             onclick="return false;" /> <input type="submit" name="btnSubmit" id="minderGrootteKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
                     </div>
@@ -53,13 +53,13 @@
                         </select> 
                     </div> 
                     <div class="form-group" id="grootteMinimum" style=display:none>
-                        <label for="grootteMin"></label> <input type="text" class="form-control"
-                        id="grootteMin" value="" placeholder="minimum"> <input type="text" class="form-control"
-                        id="grootteMax" value="" placeholder="maximum">
+                        <label for="grootteMin"></label> <input class="form-control"
+                        id="grootteMin" value="" placeholder="minimum" type="number" min="130" max="280"> <input type="number" class="form-control"
+                        id="grootteMax" value="" placeholder="maximum" min="130" max="280">
                     </div>
                     <div class="form-group">
-                        <label for="gewichtDetail">Gewicht : </label> <input type="text" class="form-control"
-                            id="gewichtDetail" value=""> <input type="submit" name="btnSubmit" id="extraGewichtKnop" class="btnContact" value='V'
+                        <label for="gewichtDetail">Gewicht : </label> <input type="number" class="form-control"
+                            id="gewichtDetail" value="" min="40" max="300"> <input type="submit" name="btnSubmit" id="extraGewichtKnop" class="btnContact" value='V'
                             onclick="return false;" /><input type="submit" name="btnSubmit" id="minderGewichtKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
                     </div>
@@ -73,13 +73,13 @@
                         </select> 
                     </div> 
                     <div class="form-group" id="gewichtMinimum" style=display:none>
-                        <label for="gewichtMin"></label> <input type="text" class="form-control"
-                        id="gewichtMin" value="" placeholder="minimum"> <input type="text" class="form-control"
-                        id="gewichtMax" value="" placeholder="maximum">
+                        <label for="gewichtMin"></label> <input type="number" class="form-control"
+                        id="gewichtMin" value="" placeholder="minimum" min="40" max="300"> <input type="number" class="form-control"
+                        id="gewichtMax" value="" placeholder="maximum" min="40" max="300">
                     </div>
                     <div class="form-group">
                         <label for="geboortedatumDetail">Geboortedatum : </label> <input placeholder="JJJJ-MM-DD"
-                            type="text" class="form-control" id="geboortedatumDetail" value=""> <input type="submit" name="btnSubmit" id="extraDatumKnop" class="btnContact" value='V'
+                            type="date" class="form-control" id="geboortedatumDetail" value="" min="1900-01-01" max="2002-02-07"> <input type="submit" name="btnSubmit" id="extraDatumKnop" class="btnContact" value='V'
                             onclick="return false;" /><input type="submit" name="btnSubmit" id="minderDatumKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
                     </div>
@@ -93,9 +93,9 @@
                         </select> 
                     </div> 
                     <div class="form-group" id="datumMin" style=display:none>
-                        <label for="datumMin"></label> <input type="text" class="form-control"
-                        id="geboorteMin" value="" placeholder="minimum JJJJ-MM-DD"> <input type="text" class="form-control"
-                        id="geboorteMax" value="" placeholder="maximum JJJJ-MM-DD">
+                        <label for="datumMin"></label> <input type="date" class="form-control"
+                        id="geboorteMin" value="" placeholder="minimum JJJJ-MM-DD" min="1900-01-01" max="2002-02-07"> <input type="date" class="form-control"
+                        id="geboorteMax" value="" placeholder="maximum JJJJ-MM-DD" min="1900-01-01" max="2002-02-07">
                     </div>
                     <label for="orderby">Sorteren op: </label>
                     <select id="sorteerSelect" class="api_demo_param_chb">
