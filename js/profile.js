@@ -1,6 +1,6 @@
 "use strict";
-if (sessionStorage.getItem("user") = null) {
-    window.location.href = `/register.html`;
+if (sessionStorage.getItem("user") === null) {
+    window.location.href = "/index.html";
 }
 import getDropdownArray from "./methods/getDropdownArray.js";
 import createDropdown from "./methods/createDropdown.js";
