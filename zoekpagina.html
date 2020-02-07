@@ -26,12 +26,12 @@
             </ul>
         </nav>
         </header>
-    <div class="container contact-form">
+    <div class="container contact-form effect2">
         <form>
             <h3><span id="profielVan">Friend Finder </span></h3>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="geslachtDetail" class="api_demo_lbl">Geslacht : </label>
+                    <label for="geslachtDetail" class="api_demo_lbl"><h6>Geslacht</h6></label>
                     <select id="geslachtDetail" class="api_demo_param_chb">
                         <option value="%" selected="">alle geslachten</option>
                         <option>v</option>
@@ -39,19 +39,19 @@
                         <option>x</option>
                     </select>
                     <div class="form-group">
-                    <label for="oogKleur" class="api_demo_lbl">Oogkleur : </label>
+                    <label for="oogKleur" class="api_demo_lbl"><h6>Oogkleur</h6></label>
                     <select id="oogKleur" class="api_demo_param_chb">
                         <option value="%" selected="">alle kleuren</option>
                     </select>
                     </div>
                     <div class="form-group">
-                    <label for="Haarkleur" class="api_demo_lbl">Haarkleur : </label>
+                    <label for="Haarkleur" class="api_demo_lbl"><h6>Haarkleur</h6></label>
                     <select id="haarkleur" class="api_demo_param_chb">
                         <option value="%" selected="">alle kleuren</option>
                     </select>
                     </div>
                     <div class="form-group">
-                        <label for="grootteDetail">Grootte : </label> <input  class="form-control"
+                        <label for="grootteDetail"><h6>Grootte</h6></label> <input  class="form-control"
                             id="grootteDetail" type="number" min="130" max="280"value=""> <input type="submit" name="btnSubmit" id="extraGrootteKnop" class="btnContact" value='V'
                             onclick="return false;" /> <input type="submit" name="btnSubmit" id="minderGrootteKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
@@ -71,7 +71,7 @@
                         id="grootteMax" value="" placeholder="maximum" min="130" max="280">
                     </div>
                     <div class="form-group">
-                        <label for="gewichtDetail">Gewicht : </label> <input type="number" class="form-control"
+                        <label for="gewichtDetail"><h6>Gewicht</h6></label> <input type="number" class="form-control"
                             id="gewichtDetail" value="" min="40" max="300"> <input type="submit" name="btnSubmit" id="extraGewichtKnop" class="btnContact" value='V'
                             onclick="return false;" /><input type="submit" name="btnSubmit" id="minderGewichtKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
@@ -91,7 +91,7 @@
                         id="gewichtMax" value="" placeholder="maximum" min="40" max="300">
                     </div>
                     <div class="form-group">
-                        <label for="geboortedatumDetail">Geboortedatum : </label> <input placeholder="JJJJ-MM-DD"
+                        <label for="geboortedatumDetail"><h6>Geboortedatum</h6></label> <input placeholder="JJJJ-MM-DD"
                             type="date" class="form-control" id="geboortedatumDetail" value="" min="1900-01-01" max="2002-02-07"> <input type="submit" name="btnSubmit" id="extraDatumKnop" class="btnContact" value='V'
                             onclick="return false;" /><input type="submit" name="btnSubmit" id="minderDatumKnop" class="btnContact" value='Λ'style=display:none
                             onclick="return false;" />
@@ -110,7 +110,7 @@
                         id="geboorteMin" value="" placeholder="minimum JJJJ-MM-DD" min="1900-01-01" max="2002-02-07"> <input type="date" class="form-control"
                         id="geboorteMax" value="" placeholder="maximum JJJJ-MM-DD" min="1900-01-01" max="2002-02-07">
                     </div>
-                    <label for="orderby">Sorteren op: </label>
+                    <label for="orderby"><h6>Sorteren op</h6></label>
                     <select id="sorteerSelect" class="api_demo_param_chb">
                         <option value="%" selected="">Grootte</option>
                         <option>Gewicht</option>
@@ -120,48 +120,49 @@
                         <input type="submit" name="btnSubmit" id="btnSubmit" class="btnContact" value="Zoeken"
                             onclick="return false;" />
                     </div>
+                    <h3 class="zoekresultaten"><span id="profielVan">Uw zoekresultaten</span></h3>
+                    <table id="zoekertjes">
+                        <thead>
+                            <th><h6>Geslacht</h6></th>
+                            <th><h6>Grootte</h6></th>
+                            <th><h6>Oogkleur</h6></th>
+                            <th><h6>Haarkleur</h6></th>
+                            <th><h6>Gewicht</h6></th>
+                            <th><h6>Geboortedatum</h6></th>
+                            <th><h6>Profiel</h6></th>
+                        </thead>
+                        <tbody id="zoekResultaten">
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+                <div id="foutmelding1"></div>
+                <div class="feelingLucky">
+                    
+                        <input type="submit" name="lucky" id="lucky" class="btnContact" value="I FEEL LUCKY"
+                            onclick="return false;" />
+                    
                 </div>
-            </div>
-        </form>
+                </div>
+                
     </div>
     </div>
     <div class="container contact-form4">
         <form>
-            <h3><span id="profielVan">Uw zoekresultaten: </span></h3>
-            <table id="zoekertjes">
-                <thead>
-                    <th>Geslacht</th>
-                    <th>Grootte</th>
-                    <th>Oogkleur</th>
-                    <th>Haarkleur</th>
-                    <th>Gewicht</th>
-                    <th>Geboortedatum</th>
-                    <th>Profiel</th>
-                </thead>
-                <tbody id="zoekResultaten">
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                    </tr>
-                </tfoot>
-            </table>
-        </form>
-        <div id="foutmelding1"></div>
-        <div class="feelingLucky">
             
-                <input type="submit" name="lucky" id="lucky" class="btnContact" value="I FEEL LUCKY"
-                    onclick="return false;" />
             
-        </div>
     </div>    
 </body>
 </html>

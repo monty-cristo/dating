@@ -206,8 +206,9 @@ function lijnVullen(teller, data) {
 
     const tableCell = tr.insertCell();
     const link = document.createElement("a");
-    link.innerText = "ga naar profiel";
+    link.innerText = "Profiel";
     link.href = `/profielAnderePersoon.html?id=${data[teller].id}`;
+    link.setAttribute("class", "btn btn-primary");
     tableCell.appendChild(link);
 }
 
