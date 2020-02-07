@@ -34,8 +34,10 @@ window.onload = function () {
             document.getElementById('detailGrootte').innerText = profielData.grootte;
             document.getElementById("lovecoin").innerText = profielData.lovecoins;
 
+            const chatId = profielData.id;
+
             document.getElementById("bericht").onclick = function() {
-                const url = "/chat.html?id=" + profielData.id;
+                const url = "/chat.html?id=" + chatId;
                 this.setAttribute("href", url);
             }
 
