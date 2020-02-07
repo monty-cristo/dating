@@ -18,109 +18,105 @@
 
 <body>
     <header class="box clearfix"><img class="logo" src="images/flexidating-logo.png" height="100px">
-    <nav class="navigatie">
-        <ul>
-            <li class="navigatie"><a class="navigatieLink" href="/index.html" id="afmelden">Afmelden</a></li>
-            <li class="navigatie"><a class="navigatieLink" href="" id="naarProfiel"></a></li>
-            <li class="navigatie"><img id="navigatieFoto" height="50px"/></li>
-            <li class="navigatie"><a class="navigatieLink" href="/zoekpagina.html">Zoeken</a></li>
-        </ul>
-    </nav>
+        <nav class="navigatie">
+            <ul>
+                <li class="navigatie"><a class="navigatieLink" href="/index.html" id="afmelden">Afmelden</a></li>
+                <li class="navigatie"><a class="navigatieLink" href="" id="naarProfiel"></a></li>
+                <li class="navigatie"><img id="navigatieFoto" height="50px" /></li>
+                <li class="navigatie"><a class="navigatieLink" href="/zoekpagina.html">Zoeken</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="container contact-form effect2">
         <div class="contact-image">
-            <img src="/images/Flexidating-icon.png" alt="rocket_contact" />
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
         </div>
         <form>
             <h3><span id="profielVan"></span></h3>
             <div class="row">
                 <div class="col-md-6">
-                    
+
                     <div class="form-group clearfix">
-                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png" alt="profielfoto"
-                            class="profielfoto right">
+                        <img id="detailFoto" src="https://scrumserver.tenobe.org/scrum/img/no_image.png"
+                            alt="profielfoto" class="profielfoto right">
                     </div>
-                   
                     <div class="form-group">
                         <button id="buttonLike" class="btn btn-primary right">
                             <span style='font-size:16px;' class="btn" id="sterFavoriet">&#9734;</span>
-                             </button>
-                             <a href="" id="bericht" class="btn btn-primary right right0">Bericht</a>
-                             <a href="/profile.html" id="updateButton" class="btn btn-primary right right0 right1" style="display: none;">Update</a>
-                             <a href="/favorites.html" id="favorieten" class="btn btn-primary right right1" style="display: none;">Favorieten</a>
-                    </div>
-                    <div class="form-group">
-                        <div class="lovecoin zichtbaar" style="display: none;">
-                            <img src="images/lovecoin.png" height="25px">
-                            <span id="lovecoin"></span>
-                        </div>
+                        </button>
+                        <button class="btn btn-primary right" id="lovecoinButton"><img src="./images/lovecoin.png"
+                                height="20" width="20"></button>
+                        <button class="btn btn-primary right right0" id="bericht">Bericht</button>
                     </div>
 
                 </div>
-                <div class="col-md-6">
-                                                
-                        <div>
-                            <h6>Nickname</h6>
-                            <p id="detailNick"></p>
-                        </div>
+                <div class="col-md-6" id="groepDetails">
 
-                        <div class="zichtbaar" style="display: none;">
-                            <h6>Familienaam</h6>
-                            <p id="detailFnaam"></p>
-                        </div>
-
-                        <div class="zichtbaar" style="display: none;">
-                            <h6>Voornaam</h6>
-                            <p id="detailVnaam"></p>
-                        </div>
-                 
-                        <div class="zichtbaar" style="display: none;">
-                            <h6>Geboortedatum</h6>
-                            <p id="detailGeboortedatum"></p>
-                        </div>
-                   
-                        <div>
-                            <h6>Geslacht</h6>
-                            <p id="detailSexe"></p>
-                        </div>
-                   
-                        <div>
-                            <h6>Gewicht</h6>
-                            <p id="detailGewicht"></p>
-                        </div>
-                   
-                        <div>
-                            <h6>Grootte</h6>
-                            <p id="detailGrootte"></p>
-                        </div>
-                  
-                        <div>
-                            <h6>Haarkleur</h6>
-                            <p id="detailHaarkleur"></p>
-                        </div> 
-                   
-                        <div>
-                            <h6>Oogkleur</h6>
-                            <p id="detailOogkleur"></p>
-                        </div>
-                     
-                        <div>
-                            <h6>Beroep</h6>
-                            <p id="detailBeroep"></p>
-                        </div>
-                    
-                        <div class="zichtbaar" style="display: none;">
-                            <h6>E-mail</h6>
-                            <p id="detailEmail"></p>
-                        </div>
+                    <div>
+                        <h6>Nickname</h6>
+                        <p id="detailNick"></p>
                     </div>
 
+                    <div>
+                        <h6>Familienaam</h6>
+                        <p id="detailFnaam"></p>
+                    </div>
+
+                    <div>
+                        <h6>Voornaam</h6>
+                        <p id="detailVnaam"></p>
+                    </div>
+
+                    <div>
+                        <h6>Geboortedatum</h6>
+                        <p id="detailGeboortedatum"></p>
+                    </div>
+
+                    <div>
+                        <h6>Geslacht</h6>
+                        <p id="detailSexe"></p>
+                    </div>
+
+                    <div>
+                        <h6>Gewicht</h6>
+                        <p id="detailGewicht"></p>
+                    </div>
+
+                    <div>
+                        <h6>Grootte</h6>
+                        <p id="detailGrootte"></p>
+                    </div>
+
+                    <div>
+                        <h6>Haarkleur</h6>
+                        <p id="detailHaarkleur"></p>
+                    </div>
+
+                    <div>
+                        <h6>Oogkleur</h6>
+                        <p id="detailOogkleur"></p>
+                    </div>
+
+                    <div>
+                        <h6>Beroep</h6>
+                        <p id="detailBeroep"></p>
+                    </div>
+
+                    <div>
+                        <h6>E-mail</h6>
+                        <p id="detailEmail"></p>
+                    </div>
+
+                    <div>
+                        <h6>Sterrenbeeld</h6>
+                        <p id="detailSterrenbeeld"></p>
+                    </div>
                 </div>
+
             </div>
-        </form>
     </div>
-    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </form>
+    </div>
 </body>
 
 </html>
