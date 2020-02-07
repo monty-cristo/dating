@@ -225,3 +225,28 @@ a:hover {
 .extraMarge {
     margin-top: 0.5em;
 }
+
+.btnContact {
+    background-color: rgb(164, 30, 32) !important;
+    margin: 0.5em;
+    margin-left: 0em;
+}
+
+.zoekresultaten {
+    margin: 1em !important;
+    margin-left: -3.25em !important;
+}
+
+th, td {
+    padding: 1em;
+}
+
+.api_demo_param_chb {
+    border-radius: 0.6em;
+    margin: 0.5em;
+    text-align: center;
+}
+
+.marginLeft0 {
+    margin-left: 0em;
+}
