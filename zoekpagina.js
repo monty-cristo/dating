@@ -18,14 +18,14 @@ const rooturl = 'https://scrumserver.tenobe.org/scrum/api';
 document.getElementById('lucky').addEventListener('click', function (e) {
     document.getElementById('foutmelding1').innerText = "";
     const parent = document.getElementById('zoekResultaten');
+    const geslacht=controleren("geslachtDetail");
     while (parent.childNodes[0]) {
         parent.childNodes[0].remove();
         }
-    let url= rooturl+ '/profiel/search.php?sexe=';
+    let url= rooturl+ '/profiel/search.php?sexe=' +geslacht;
         fetch(url)
         .then(function (resp) { return resp.json(); })
         .then(function (data) {const luckyFriend= Math.floor(Math.random() * data.length);
-            console.log(luckyFriend);
             lijnVullen(luckyFriend, data);
         })
         .catch(function (error) { console.log(error); });
