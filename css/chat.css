@@ -13,12 +13,40 @@
   height: 100vh;
 }
 
-.contactList {
-  padding: 20px;
+aside {
   background-color: var(--color-black);
+  padding: 20px;
+}
+
+.contactList {
   display: grid;
   grid-auto-rows: max-content;
   gap: 10px;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+aside nav {
+  text-align: center;
+}
+
+aside nav ul {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 10px; 
+}
+
+nav a {
+  display: block;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  background-color: var(--color-dark-red);
+  padding: 10px;
 }
 
 .contactItem {
@@ -124,6 +152,15 @@
 @media (min-width: 320px) and (max-width: 480px) {
   .app {
     grid-template-columns: auto 1fr;
+  }
+
+  aside {
+    padding: 0;
+    justify-content: flex-end;
+  }
+
+  aside nav {
+    display: none;
   }
 
   .contactList {
