@@ -21,6 +21,10 @@ window.onload = function () {
 
             profielData = data;
 
+            if (profielData.nickname === undefined) {
+                window.location.href = "/profielBestaatNiet.html";
+            }
+
             document.querySelector("title").innerText = profielData.nickname;
             document.getElementById('detailNick').innerText = profielData.nickname;
             document.getElementById('detailFnaam').innerText = profielData.familienaam;
